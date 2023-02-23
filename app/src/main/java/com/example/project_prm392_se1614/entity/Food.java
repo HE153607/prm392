@@ -3,104 +3,144 @@ package com.example.project_prm392_se1614.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-@Entity(tableName = "Food")
+import kotlin.jvm.Transient;
+
+@Entity(tableName = "Food",
+        foreignKeys = @ForeignKey(
+                entity = User.class,
+                parentColumns = "id",
+                childColumns = "user_id"))
 public class Food {
+
     @PrimaryKey(autoGenerate = true)
     @NotNull
-    @ColumnInfo(name="FoodId")
-    private int FoodId;
-    @ColumnInfo(name="FoodId")
-    private String FoodName;
-    @ColumnInfo(name="FoodId")
-    private String Ration;
-    @ColumnInfo(name="FoodId")
-    private String Time;
-    @ColumnInfo(name="FoodId")
-    private String Ingredient;
-    @ColumnInfo(name="FoodId")
-    private String Steps;
-    @ColumnInfo(name="FoodId")
-    private String Image;
-    @ColumnInfo(name="FoodId")
+    @ColumnInfo(name="id")
+    private int id;
 
-    private User UserId;
+    @ColumnInfo(name="food_name")
+    private String foodName;
 
-    public Food(int foodId, String foodName, String ration, String time, String ingredient, String steps, String image, User userId) {
-        FoodId = foodId;
-        FoodName = foodName;
-        Ration = ration;
-        Time = time;
-        Ingredient = ingredient;
-        Steps = steps;
-        Image = image;
-        UserId = userId;
+    @ColumnInfo(name="ration")
+    private String ration;
+
+    @ColumnInfo(name="time")
+    private String time;
+
+    @ColumnInfo(name="ingredient")
+    private String ingredient;
+
+    @ColumnInfo(name="step")
+    private String step;
+
+    @ColumnInfo(name="image")
+    private String image;
+
+    @ColumnInfo(name="user_id")
+    private int userId;
+
+    @ColumnInfo(name="active")
+    private Boolean active;
+
+    @Ignore
+    private User user;
+
+    public Food() {
     }
 
-    public int getFoodId() {
-        return FoodId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setFoodId(int foodId) {
-        FoodId = foodId;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Food(int id, String foodName, String ration, String time, String ingredient, String step, String image, int userId, Boolean active) {
+        this.id = id;
+        this.foodName = foodName;
+        this.ration = ration;
+        this.time = time;
+        this.ingredient = ingredient;
+        this.step = step;
+        this.image = image;
+        this.userId = userId;
+        this.active = active;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFoodName() {
-        return FoodName;
+        return foodName;
     }
 
     public void setFoodName(String foodName) {
-        FoodName = foodName;
+        this.foodName = foodName;
     }
 
     public String getRation() {
-        return Ration;
+        return ration;
     }
 
     public void setRation(String ration) {
-        Ration = ration;
+        this.ration = ration;
     }
 
     public String getTime() {
-        return Time;
+        return time;
     }
 
     public void setTime(String time) {
-        Time = time;
+        this.time = time;
     }
 
     public String getIngredient() {
-        return Ingredient;
+        return ingredient;
     }
 
     public void setIngredient(String ingredient) {
-        Ingredient = ingredient;
+        this.ingredient = ingredient;
     }
 
-    public String getSteps() {
-        return Steps;
+    public String getStep() {
+        return step;
     }
 
-    public void setSteps(String steps) {
-        Steps = steps;
+    public void setStep(String step) {
+        this.step = step;
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
     public void setImage(String image) {
-        Image = image;
+        this.image = image;
     }
 
-    public User getUserId() {
-        return UserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        UserId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
