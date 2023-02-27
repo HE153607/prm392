@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText addname;
     private EditText addrecipe;
     private EditText addstep;
+    private EditText images;
     private Button add;
     private void bindingView(){
         discover = findViewById(R.id.discover);
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 //        addname = findViewById(R.id.addname);
 //        addrecipe = findViewById(R.id.addrecipe);
 //        addstep = findViewById(R.id.addstep);
+//        images = findViewById(R.id.images);
 //        add = findViewById(R.id.add);
     }
     private void bindingAction(){
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
 //        String name = addname.getText().toString().trim();
 //        String recipe = addrecipe.getText().toString().trim();
 //        String steps = addstep.getText().toString().trim();
-//        Food newf = new Food(name,null,null,recipe,steps,null,1,false);
+//        String imagess = images.getText().toString().trim();
+//        Food newf = new Food(name,null,null,recipe,steps,imagess,1,false);
 //        MyDatabase.getInstance(this).getFoodDao().insertFood(newf);
 ////        User newU = new User(name,recipe,steps,false);
 ////        MyDatabase.getInstance(this).getUserDao().insertUser(newU);
@@ -62,16 +65,11 @@ public class MainActivity extends AppCompatActivity {
 //        addname.setText("");
 //        addrecipe.setText("");
 //        addstep.setText("");
+//        images.setText("");
 //    }
 
     private void onDiscoverList(View view) {
-        foodAdapter = new FoodAdapter();
-        foods = new ArrayList<>();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        discoverList.setLayoutManager(linearLayoutManager);
-        discoverList.setAdapter(foodAdapter);
-        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
-        foodAdapter.setData(foods);
+
     }
 
     @Override
@@ -79,6 +77,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindingView();
+        foodAdapter = new FoodAdapter();
+        foods = new ArrayList<>();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        discoverList.setLayoutManager(linearLayoutManager);
+        discoverList.setAdapter(foodAdapter);
+        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+        foodAdapter.setData(foods);
         bindingAction();
 
     }

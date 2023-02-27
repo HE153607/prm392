@@ -1,5 +1,6 @@
 package com.example.project_prm392_se1614;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
        Food food = foodList.get(position);
+       String urls = food.getImage();
        if(food == null){
            return;
        }
+       //holder.foodimage.setBackground(Drawable.createFromPath("C:\\Users\\win\\OneDrive\\Pictures\\Saved Pictures\\suonxao.jpg"));
        holder.fname.setText(food.getFoodName());
        holder.recipe.setText(food.getIngredient());
        holder.step.setText(food.getStep());

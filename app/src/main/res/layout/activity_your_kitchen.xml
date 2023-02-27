@@ -11,12 +11,12 @@
         android:layout_height="wrap_content"
         >
         <Button
+            android:id="@+id/back"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/ic_action_back"
             android:layout_marginLeft="5dp"
-
-
+            android:onClick="onBackClick"
             />
         <EditText
             android:layout_width="260dp"

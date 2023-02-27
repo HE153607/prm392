@@ -180,17 +180,23 @@
         android:orientation="vertical"
         >
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/discoverList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+                    android:id="@+id/discoverList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
 
-            />
+                    />
 <!--        <EditText-->
 <!--            android:id="@+id/addname"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->
 <!--            android:hint="Tên"-->
+<!--            />-->
+<!--        <EditText-->
+<!--            android:id="@+id/images"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:hint="Ảnh"-->
 <!--            />-->
 <!--        <EditText-->
 <!--            android:id="@+id/addrecipe"-->
@@ -226,6 +232,7 @@
             android:background="@drawable/ic_action_home"
             android:layout_marginRight="40dp"
             android:layout_marginLeft="60dp"
+
             />
         <ImageView
             android:layout_width="40dp"
