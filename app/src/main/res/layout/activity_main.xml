@@ -40,6 +40,7 @@
         android:paddingTop="30dp"
         >
         <TextView
+            android:id="@+id/urkit"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginLeft="40dp"
@@ -49,8 +50,10 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20dp"
+            android:onClick="onUrkitClick"
             />
         <TextView
+            android:id="@+id/discover"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginRight="40dp"
@@ -59,6 +62,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20dp"
+            android:onClick="onDiscoverList"
             />
     </LinearLayout>
     <LinearLayout
@@ -171,52 +175,50 @@
             />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         >
-        <ImageView
-            android:layout_width="350dp"
-            android:layout_height="300dp"
-            android:layout_marginLeft="29dp"
-            android:background="@drawable/img2"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="115dp"
-        android:layout_marginTop="10dp"
-        >
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_action_like"
-            android:layout_marginRight="20dp"
-            />
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:textColor="@color/black"
-            android:background="@drawable/ic_action_love"
-            android:layout_marginRight="20dp"
-            />
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text=""
-            android:textColor="@color/black"
-            android:background="@drawable/ic_action_cm"
-            android:textSize="16dp"
-            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/discoverList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
 
+            />
+<!--        <EditText-->
+<!--            android:id="@+id/addname"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:hint="Tên"-->
+<!--            />-->
+<!--        <EditText-->
+<!--            android:id="@+id/addrecipe"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:hint="Nguyên Liệu"-->
+<!--            />-->
+<!--        <EditText-->
+<!--            android:id="@+id/addstep"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:hint="Cách Làm"-->
+<!--        />-->
+<!--        <Button-->
+<!--            android:id="@+id/add"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="add"-->
+<!--            android:onClick="onAdd"-->
+<!--            />-->
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="165dp"
         android:background="#E89F20"
         android:paddingTop="10dp"
+
         >
         <ImageView
             android:layout_width="40dp"

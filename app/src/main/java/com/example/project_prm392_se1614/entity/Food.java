@@ -60,8 +60,8 @@ public class Food {
         this.userId = userId;
     }
 
-    public Food(int id, String foodName, String ration, String time, String ingredient, String step, String image, int userId, Boolean active) {
-        this.id = id;
+    public Food(String foodName, String ration, String time, String ingredient, String step, String image, int userId, Boolean active) {
+
         this.foodName = foodName;
         this.ration = ration;
         this.time = time;
