@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
 import com.example.project_prm392_se1614.entity.User;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +32,15 @@ public class MainActivity extends AppCompatActivity {
     private EditText addrecipe;
     private EditText addstep;
     private EditText images;
+    private EditText search;
     private Button add;
+    private Button search_buttons;
     private void bindingView(){
         discover = findViewById(R.id.discover);
         discoverList = findViewById(R.id.discoverList);
         urkit = findViewById(R.id.urkit);
+        search = findViewById(R.id.search);
+        search_buttons = findViewById(R.id.search_button);
 //        addname = findViewById(R.id.addname);
 //        addrecipe = findViewById(R.id.addrecipe);
 //        addstep = findViewById(R.id.addstep);
@@ -42,9 +48,16 @@ public class MainActivity extends AppCompatActivity {
 //        add = findViewById(R.id.add);
     }
     private void bindingAction(){
-        discover.setOnClickListener(this::onDiscoverList);
         urkit.setOnClickListener(this::onUrkitClick);
+        search_buttons.setOnClickListener(this::onSearchClick);
         //add.setOnClickListener(this::onAdd);
+    }
+
+    private void onSearchClick(View view) {
+        String keyword = search.getText().toString().trim();
+        foods = new ArrayList<>();
+        foods = MyDatabase.getInstance(this).getFoodDao().searchfood(keyword);
+        foodAdapter.setData(foods);
     }
 
     private void onUrkitClick(View view) {
@@ -68,15 +81,19 @@ public class MainActivity extends AppCompatActivity {
 //        images.setText("");
 //    }
 
-    private void onDiscoverList(View view) {
 
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindingView();
+//        foodAdapter = new FoodAdapter(new FoodAdapter.IClick() {
+//            @Override
+//            public void deleteFood(Food food) {
+//                clickDeleteFood(food);
+//            }
+//        });
         foodAdapter = new FoodAdapter();
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -87,4 +104,14 @@ public class MainActivity extends AppCompatActivity {
         bindingAction();
 
     }
+//    private void LoadData(){
+//        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+//        foodAdapter.setData(foods);
+//    }
+//
+//    private void clickDeleteFood(Food foodss) {
+//         MyDatabase.getInstance(this).getFoodDao().deleteFood(foodss);
+//         Toast.makeText(this,"Delete ok",Toast.LENGTH_SHORT).show();
+//         LoadData();
+//    }
 }

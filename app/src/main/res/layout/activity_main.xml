@@ -21,16 +21,20 @@
 
             />
         <EditText
+            android:id="@+id/search"
             android:layout_width="260dp"
             android:layout_height="70dp"
             android:text="Enter your food"
             android:layout_marginLeft="15dp"
+            android:inputType="text"
             />
         <Button
+            android:id="@+id/search_button"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/ic_action_search"
+            android:onClick="onSearchClick"
             />
     </LinearLayout>
     <LinearLayout
@@ -186,6 +190,13 @@
                     android:layout_marginTop="20dp"
 
                     />
+<!--        <Button-->
+<!--            android:id="@+id/add"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="add"-->
+<!--            android:onClick="onAdd"-->
+<!--            />-->
 <!--        <EditText-->
 <!--            android:id="@+id/addname"-->
 <!--            android:layout_width="match_parent"-->
@@ -210,13 +221,7 @@
 <!--        android:layout_height="match_parent"-->
 <!--        android:hint="Cách Làm"-->
 <!--        />-->
-<!--        <Button-->
-<!--            android:id="@+id/add"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="add"-->
-<!--            android:onClick="onAdd"-->
-<!--            />-->
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
