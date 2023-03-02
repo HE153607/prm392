@@ -24,7 +24,7 @@
             android:id="@+id/search"
             android:layout_width="260dp"
             android:layout_height="70dp"
-            android:text="Enter your food"
+            android:hint="Enter your food"
             android:layout_marginLeft="15dp"
             android:inputType="text"
             />
