@@ -59,8 +59,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             holder.foodimage.setBackground(drawable);
         }
        holder.fname.setText(food.getFoodName());
-       holder.recipe.setText(food.getIngredient());
-       holder.step.setText(food.getStep());
+
     }
 
 
@@ -75,16 +74,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public class FoodViewHolder extends RecyclerView.ViewHolder{
          public ImageView foodimage;
          public TextView fname;
-         public TextView recipe;
-         public TextView step;
          //public Button delete;
 
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
             foodimage = itemView.findViewById(R.id.foodimage);
             fname = itemView.findViewById(R.id.name);
-            recipe = itemView.findViewById(R.id.recipe);
-            step = itemView.findViewById(R.id.step);
+
             //delete = itemView.findViewById(R.id.delete);
         }
     }

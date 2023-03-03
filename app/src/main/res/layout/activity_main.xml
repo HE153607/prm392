@@ -86,8 +86,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chọn từ 2 nguyên liệu"
-            android:textSize="22dp"
+            android:text="Chọn 1 nguyên liệu trong tủ lạnh bạn"
+            android:textSize="18dp"
             />
     </LinearLayout>
     <LinearLayout
@@ -96,53 +96,75 @@
         android:layout_marginTop="10dp"
         >
         <TextView
+            android:id="@+id/pig"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thịt lợn"
-            android:textColor="@color/black"
+            android:text="Lợn"
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelectpig"
             />
         <TextView
+            android:id="@+id/fish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cá"
-            android:textColor="@color/black"
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelectfish"
             />
         <TextView
+            android:id="@+id/veget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rau"
-            android:textColor="@color/black"
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelectveget"
             />
         <TextView
+            android:id="@+id/beef"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thịt bò"
-            android:textColor="@color/black"
+            android:text="Bò"
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelectbeef"
             />
         <TextView
+            android:id="@+id/egg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Trứng"
-            android:textColor="@color/black"
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelectegg"
             />
         <TextView
+            android:id="@+id/chic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thịt gà "
-            android:textColor="@color/black"
+            android:text="Gà "
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelectchic"
+            />
+        <TextView
+            android:id="@+id/pota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Khoai tây"
+            android:textColor="#F30404"
+            android:textSize="19dp"
+            android:layout_marginRight="15dp"
+            android:onClick="onSelectpota"
             />
 
     </LinearLayout>
@@ -154,28 +176,54 @@
         android:layout_marginBottom="10dp"
         >
         <TextView
+            android:id="@+id/toma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cà chua"
-            android:textColor="@color/black"
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelecttoma"
             />
         <TextView
+            android:id="@+id/goat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thịt dê "
-            android:textColor="@color/black"
+            android:text="Dê"
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelectgoat"
             />
         <TextView
+            android:id="@+id/xx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kim chi"
-            android:textColor="@color/black"
+            android:text="Xúc xích"
+            android:textColor="#F30404"
             android:textSize="19dp"
             android:layout_marginRight="15dp"
+            android:onClick="onSelectxx"
+            />
+        <TextView
+            android:id="@+id/sheep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cừu"
+            android:textColor="#F30404"
+            android:textSize="19dp"
+            android:layout_marginRight="15dp"
+            android:onClick="onSelectsheep"
+            />
+        <TextView
+            android:id="@+id/lang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Khoai lang"
+            android:textColor="#F30404"
+            android:textSize="19dp"
+            android:layout_marginRight="15dp"
+            android:onClick="onSelectlang"
             />
     </LinearLayout>
     <LinearLayout
