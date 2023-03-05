@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private Button search_buttons;
     private TextView pig, fish, veget, beef, egg, chic, pota, toma, goat, xx, sheep, lang;
     private void bindingView(){
-        discover = findViewById(R.id.discover);
         discoverList = findViewById(R.id.discoverList);
         search = findViewById(R.id.search);
         search_buttons = findViewById(R.id.search_button);

@@ -43,21 +43,19 @@
         android:background="#E89F20"
         android:paddingTop="30dp"
         >
+
         <TextView
-            android:id="@+id/urkit"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="20dp"
-            android:text="Bếp của bạn"
             android:gravity="center"
-            android:textStyle="bold"
+            android:text="Bếp của bạn"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:onClick="onUrkitClick"
-            />
+            android:textStyle="bold" />
+
         <TextView
-            android:id="@+id/discover"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginRight="40dp"
@@ -66,7 +64,6 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:onClick="onDiscoverList"
             />
     </LinearLayout>
     <LinearLayout
@@ -274,9 +271,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="175dp"
         android:background="#E89F20"
         android:paddingTop="10dp"
+        android:layout_gravity="bottom"
 
         >
         <ImageView
