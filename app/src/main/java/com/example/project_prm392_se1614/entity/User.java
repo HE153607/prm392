@@ -74,4 +74,8 @@ public class User {
         this.email = email;
         this.active = active;
     }
+
+    public byte[] getProfileImage() {
+        return null;
+    }
 }
