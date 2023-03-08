@@ -1,32 +1,35 @@
 package com.example.project_prm392_se1614;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.example.project_prm392_se1614.entity.MyDatabase;
-import com.example.project_prm392_se1614.entity.UserDao;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("logins", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
         String name  = sharedPreferences.getString("user", null);
-        if(name == null){
-            Intent intent =  new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+//        if(name == null){
+//            //TODO return login page
+//        }
+//        else{
+//            // TODO forward to home page
+//            Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+//        }
 
     }
 }
