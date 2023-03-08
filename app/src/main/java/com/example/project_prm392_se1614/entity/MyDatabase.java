@@ -5,8 +5,12 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
+
+import com.example.project_prm392_se1614.converter.RoleConverter;
 
 @Database(entities = {User.class, Food.class, Evaluate.class}, version = 1)
+@TypeConverters({RoleConverter.class})
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract UserDao getUserDao();
