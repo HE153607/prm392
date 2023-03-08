@@ -22,7 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class HomePage extends AppCompatActivity {
     public TextView discover;
     public RecyclerView discoverList;
     private FoodAdapter foodAdapter;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 //        addrecipe = findViewById(R.id.addrecipe);
 //        addstep = findViewById(R.id.addstep);
 //        images = findViewById(R.id.images);
-//        add = findViewById(R.id.add);
+        //add = findViewById(R.id.add);
     }
     private void bindingAction(){
         discover.setOnClickListener(this::onDiscoverClick);
