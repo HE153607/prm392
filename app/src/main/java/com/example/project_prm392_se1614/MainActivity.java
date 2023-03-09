@@ -7,6 +7,8 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project_prm392_se1614.entity.MyDatabase;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,10 +21,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
-        String name  = sharedPreferences.getString("user", null);
+        String token  = sharedPreferences.getString("user", null);
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+
 //        if(name == null){
 //            //TODO return login page
 //        }

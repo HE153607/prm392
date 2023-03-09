@@ -1,6 +1,7 @@
 package com.example.project_prm392_se1614;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.project_prm392_se1614.entity.MyDatabase;
 import com.example.project_prm392_se1614.entity.Role;
 import com.example.project_prm392_se1614.entity.User;
+import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 import java.util.logging.Logger;
 
@@ -82,6 +84,13 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
             database.getUserDao().insertUser(user);
+
+            SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
+            SharedPreferences.Editor editor = session.edit();
+
+            editor.putString("user", JWTUtil.GenToken(user));
+            editor.apply();
+
             Toast.makeText(this, "create account successful", Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Log.e("Error Register ", "can't create account cause "+e.getMessage());

@@ -18,6 +18,7 @@ public class JWTUtil {
     public static String GenToken(User user){
         Algorithm algorithm = Algorithm.HMAC256(KEY_TOKEN);
         Date expiration = new Date(new Date().getTime() + (60 * 60 * 1000));//1 giờ
+
         String token = JWT.create()
                 .withClaim("email", user.getEmail())
                 .withClaim("id", user.getId())
@@ -25,6 +26,7 @@ public class JWTUtil {
                 .withClaim("role", user.getRole().name())
                 .withExpiresAt(expiration)
                 .sign(algorithm);
+
         return token;
     }
 

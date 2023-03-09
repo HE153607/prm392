@@ -19,7 +19,7 @@ public abstract class MyDatabase extends RoomDatabase {
 
     public abstract FoodDao getFoodDao();
 
-    private static final String DB_NAME = "db_prm392.db";
+    private static final String DB_NAME = "db_prm392s.db";
     private static MyDatabase instance;
 
     public static synchronized MyDatabase getInstance(Context context){
