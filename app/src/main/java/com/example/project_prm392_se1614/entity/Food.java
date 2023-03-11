@@ -143,4 +143,8 @@ public class Food {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public byte[] getFoodImage() {
+        return null;
+    }
 }
