@@ -15,5 +15,4 @@ public interface UserDao {
 
 //    @Query("SELECT * FROM items WHERE accountId = :accountId")
 //    public List<Food> getItemsForAccount(int accountId);
-
 }
