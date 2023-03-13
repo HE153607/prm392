@@ -134,7 +134,7 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
     private void updateFood(){
-        String foodname = txtNameFood.getText().toString();
+        String foodname  = txtNameFood.getText().toString();
         String songuoi = txtSoNguoi.getText().toString();
         String nguyenlieu = txtNguyenLieu.getText().toString();
         String thoigian = txtTime.getText().toString();
