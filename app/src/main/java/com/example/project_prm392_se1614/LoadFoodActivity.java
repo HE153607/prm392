@@ -28,7 +28,7 @@ public class LoadFoodActivity extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 10;
     private RecyclerView rv;
     private Button btnAdd;
-    private FoodAdapters foodAdapter;
+    private FoodAdapter foodAdapter;
     private List<Food> foodList;
     private EditText edtSearch;
     private void bindingView(){
@@ -88,7 +88,7 @@ public class LoadFoodActivity extends AppCompatActivity {
 
         foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
 
-        foodAdapter = new FoodAdapters(new FoodAdapters.IClickFood() {
+        foodAdapter = new FoodAdapter(new FoodAdapter.IClickFood() {
             @Override
             public void updateFood(Food food) {
                 clickUpdateFood(food);
