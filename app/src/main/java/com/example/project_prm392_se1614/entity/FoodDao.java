@@ -29,5 +29,6 @@ public interface FoodDao {
     @Update
     void updateFood(Food food);
 
+    @Query("SELECT * FROM Food WHERE user_id =:userId")
     Food getFoodById(int userId);
 }
