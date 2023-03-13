@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -15,47 +16,46 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
-import com.example.project_prm392_se1614.entity.User;
 
 import java.io.InputStream;
-import java.util.Date;
 
-public class FoodActivity extends AppCompatActivity {
-
+public class UpdateActivity extends AppCompatActivity {
     private EditText txtNameFood;
     private EditText txtSoNguoi;
     private EditText txtTime;
     private EditText txtNguyenLieu;
     private EditText txtCachLam;
-    private Button btnThem;
+    private Button btnUpdate;
+    private Food lFood;
+
     private Button btnImg;
     private ImageView imgFood;
     private String selectedImagePath;
     private static final int REQUEST_CODE_STORAGE_PERMISSION =1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
-
     private void bindingView(){
         txtNameFood = findViewById(R.id.textNameOrder);
         txtSoNguoi = findViewById(R.id.textPerson);
         txtNguyenLieu = findViewById(R.id.textTime);
         txtTime = findViewById(R.id.textTime);
         txtCachLam = findViewById(R.id.textCachLam);
-        btnThem = findViewById(R.id.btnThem);
+        btnUpdate = findViewById(R.id.btnThem);
         btnImg = findViewById(R.id.btnImg);
         imgFood = findViewById(R.id.imgFood);
         selectedImagePath="";
     }
 
     private void bindingAction(){
-
-        btnThem.setOnClickListener(this::onBtnThemMonAn);
         btnImg.setOnClickListener(this::onBtnImgClick);
+    }
+
+    private void onBtnImgClick(View view) {
+        selectImage();
     }
 
     public void selectImage(){
@@ -97,10 +97,6 @@ public class FoodActivity extends AppCompatActivity {
             }
         }
     }
-
-    private void onBtnImgClick(View view) {
-        selectImage();
-    }
     private String getPathFromUri(Uri contentUri){
         String filePath;
         Cursor cursor = getContentResolver().query(contentUri,null,null,null,null);
@@ -114,35 +110,47 @@ public class FoodActivity extends AppCompatActivity {
         }
         return filePath;
     }
-    private void onBtnThemMonAn(View view) {
-        final Food food = new Food();
-        food.setId(1);
-        food.setFoodName(txtNameFood.getText().toString());
-        food.setTime(txtTime.getText().toString());
-        food.setActive(true);
-        food.setStep(txtCachLam.getText().toString());
-        food.setIngredient(txtNguyenLieu.getText().toString());
-        food.setRation(txtSoNguoi.getText().toString());
-        food.setImage(selectedImagePath);
-        food.setUserId(1);
-
-
-
-//        String foodname = txtNameFood.getText().toString();
-//        String songuoi = txtSoNguoi.getText().toString();
-//        String nguyenlieu = txtNguyenLieu.getText().toString();
-//        String thoigian = txtTime.getText().toString();
-//        String cachlam = txtCachLam.getText().toString();
-//        Food food = new Food(1,foodname,songuoi,thoigian,nguyenlieu,cachlam,null, 1,true);
-        MyDatabase.getInstance(this).getFoodDao().insert(food);
-        Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.createfoodlayout);
+        setContentView(R.layout.activity_update);
         bindingView();
         bindingAction();
+        lFood = (Food) getIntent().getExtras().get("object_food");
+        if(lFood != null){
+            txtNguyenLieu.setText(lFood.getIngredient());
+            txtNameFood.setText(lFood.getFoodName());
+            txtCachLam.setText(lFood.getStep());
+            txtTime.setText(lFood.getTime());
+            txtSoNguoi.setText(lFood.getRation());
+        }
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateFood();
+            }
+        });
+    }
+    private void updateFood(){
+        String foodname = txtNameFood.getText().toString();
+        String songuoi = txtSoNguoi.getText().toString();
+        String nguyenlieu = txtNguyenLieu.getText().toString();
+        String thoigian = txtTime.getText().toString();
+        String cachlam = txtCachLam.getText().toString();
+
+        lFood.setFoodName(foodname);
+        lFood.setRation(songuoi);
+        lFood.setIngredient(nguyenlieu);
+        lFood.setTime(thoigian);
+        lFood.setStep(cachlam);
+
+        MyDatabase.getInstance(this).getFoodDao().updateFood(lFood);
+        Toast.makeText(this, "update", Toast.LENGTH_SHORT).show();
+
+        Intent intentResult = new Intent();
+        setResult(Activity.RESULT_OK,intentResult);
+        finish();;
     }
 }

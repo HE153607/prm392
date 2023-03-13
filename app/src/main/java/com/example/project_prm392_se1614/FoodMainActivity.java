@@ -15,19 +15,15 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
-import com.example.project_prm392_se1614.entity.User;
 
 import java.io.InputStream;
-import java.util.Date;
 
-public class FoodActivity extends AppCompatActivity {
-
+public class FoodMainActivity extends AppCompatActivity {
     private EditText txtNameFood;
     private EditText txtSoNguoi;
     private EditText txtTime;
@@ -115,7 +111,7 @@ public class FoodActivity extends AppCompatActivity {
         return filePath;
     }
     private void onBtnThemMonAn(View view) {
-        final Food food = new Food();
+        Food food = new Food();
         food.setId(1);
         food.setFoodName(txtNameFood.getText().toString());
         food.setTime(txtTime.getText().toString());
@@ -137,7 +133,6 @@ public class FoodActivity extends AppCompatActivity {
         MyDatabase.getInstance(this).getFoodDao().insert(food);
         Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
