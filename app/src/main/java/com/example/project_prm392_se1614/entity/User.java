@@ -24,15 +24,8 @@ public class User {
     @ColumnInfo(name="email")
     private String email;
 
-    @ColumnInfo(name="role")
-    private Role role;
-
     @ColumnInfo(name="active")
     private Boolean active;
-
-    public User() {
-
-    }
 
     public int getId() {
         return id;
@@ -44,14 +37,6 @@ public class User {
 
     public String getPassword() {
         return password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public void setPassword(String password) {
@@ -82,7 +67,8 @@ public class User {
         this.active = active;
     }
 
-    public User( String password, String name, String email, Boolean active) {
+    public User(String password, String name, String email, Boolean active) {
+        //this.id = id;
         this.password = password;
         this.name = name;
         this.email = email;
