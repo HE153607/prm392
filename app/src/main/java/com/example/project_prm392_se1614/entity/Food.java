@@ -8,6 +8,8 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 import kotlin.jvm.Transient;
 
 @Entity(tableName = "Food",
@@ -15,7 +17,7 @@ import kotlin.jvm.Transient;
                 entity = User.class,
                 parentColumns = "id",
                 childColumns = "user_id"))
-public class Food {
+public class Food implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @NotNull
