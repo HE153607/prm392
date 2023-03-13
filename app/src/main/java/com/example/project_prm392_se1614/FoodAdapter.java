@@ -20,17 +20,10 @@ import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder>{
     public List<Food> foodList;
-    //public IClick iClicks;
     public void setData(List<Food> list){
         this.foodList = list;
         notifyDataSetChanged();
     }
-//    public interface IClick{
-//        void deleteFood(Food food);
-//    }
-//    public FoodAdapter(IClick iClick){
-//        this.iClicks = iClick;
-//    }
     @NonNull
     @Override
     public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,12 +34,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
        Food food = foodList.get(position);
-//       holder.delete.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//               iClicks.deleteFood(food);
-//           }
-//       });
        String imagename = food.getImage();
        Context context = holder.itemView.getContext();
        if(food == null){
@@ -74,14 +61,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public class FoodViewHolder extends RecyclerView.ViewHolder{
          public ImageView foodimage;
          public TextView fname;
-         //public Button delete;
 
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
             foodimage = itemView.findViewById(R.id.foodimage);
             fname = itemView.findViewById(R.id.name);
-
-            //delete = itemView.findViewById(R.id.delete);
         }
     }
 }

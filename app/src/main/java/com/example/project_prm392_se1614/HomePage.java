@@ -27,12 +27,7 @@ public class HomePage extends AppCompatActivity {
     public RecyclerView discoverList;
     private FoodAdapter foodAdapter;
     private List<Food> foods;
-    private EditText addname;
-    private EditText addrecipe;
-    private EditText addstep;
-    private EditText images;
     private EditText search;
-    private Button add;
     private Button search_buttons;
     private TextView pig, fish, veget, beef, egg, chic, pota, toma, goat, xx, sheep, lang;
     private void bindingView(){
@@ -52,11 +47,6 @@ public class HomePage extends AppCompatActivity {
         xx = findViewById(R.id.xx);
         sheep = findViewById(R.id.sheep);
         lang = findViewById(R.id.lang);
-//        addname = findViewById(R.id.addname);
-//        addrecipe = findViewById(R.id.addrecipe);
-//        addstep = findViewById(R.id.addstep);
-//        images = findViewById(R.id.images);
-        //add = findViewById(R.id.add);
     }
     private void bindingAction(){
         discover.setOnClickListener(this::onDiscoverClick);
@@ -73,7 +63,6 @@ public class HomePage extends AppCompatActivity {
         xx.setOnClickListener(this::onSelectxx);
         sheep.setOnClickListener(this::onSelectsheep);
         lang.setOnClickListener(this::onSelectlang);
-        //add.setOnClickListener(this::onAdd);
     }
 
     private void onDiscoverClick(View view) {
@@ -144,37 +133,11 @@ public class HomePage extends AppCompatActivity {
         foods = MyDatabase.getInstance(this).getFoodDao().searchfood(keyword);
         foodAdapter.setData(foods);
     }
-
-
-//    private void onAdd(View view) {
-//        String name = addname.getText().toString().trim();
-//        String recipe = addrecipe.getText().toString().trim();
-//        String steps = addstep.getText().toString().trim();
-//        String imagess = images.getText().toString().trim();
-//        Food newf = new Food(name,null,null,recipe,steps,imagess,1,false);
-//        MyDatabase.getInstance(this).getFoodDao().insertFood(newf);
-////        User newU = new User(name,recipe,steps,false);
-////        MyDatabase.getInstance(this).getUserDao().insertUser(newU);
-//        Toast.makeText(this,"Add ok",Toast.LENGTH_SHORT).show();
-//        addname.setText("");
-//        addrecipe.setText("");
-//        addstep.setText("");
-//        images.setText("");
-//    }
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindingView();
-//        foodAdapter = new FoodAdapter(new FoodAdapter.IClick() {
-//            @Override
-//            public void deleteFood(Food food) {
-//                clickDeleteFood(food);
-//            }
-//        });
         foodAdapter = new FoodAdapter();
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -185,14 +148,4 @@ public class HomePage extends AppCompatActivity {
         bindingAction();
 
     }
-//    private void LoadData(){
-//        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
-//        foodAdapter.setData(foods);
-//    }
-//
-//    private void clickDeleteFood(Food foodss) {
-//         MyDatabase.getInstance(this).getFoodDao().deleteFood(foodss);
-//         Toast.makeText(this,"Delete ok",Toast.LENGTH_SHORT).show();
-//         LoadData();
-//    }
 }
