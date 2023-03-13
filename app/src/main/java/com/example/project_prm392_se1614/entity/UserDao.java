@@ -1,18 +1,16 @@
 package com.example.project_prm392_se1614.entity;
 
 import androidx.room.Dao;
-
-import java.util.List;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
+
+import java.util.List;
 
 @Dao
 public interface UserDao {
+    @Insert
+    void insertUser(User user);
 
-    @Query("SELECT * FROM user  WHERE id = :id")
-    public User getUserById(int id);
-
-//    @Query("SELECT * FROM items WHERE accountId = :accountId")
-//    public List<Food> getItemsForAccount(int accountId);
+    @Query("SELECT * FROM user")
+    List<User> getAllUser();
 }
