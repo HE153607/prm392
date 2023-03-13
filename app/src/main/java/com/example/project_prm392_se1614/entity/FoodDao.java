@@ -28,4 +28,6 @@ public interface FoodDao {
     List<Food> getFoods();
     @Update
     void updateFood(Food food);
+
+    Food getFoodById(int userId);
 }
