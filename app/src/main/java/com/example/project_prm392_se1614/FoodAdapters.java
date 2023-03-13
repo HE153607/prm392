@@ -1,13 +1,10 @@
 package com.example.project_prm392_se1614;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +15,7 @@ import com.example.project_prm392_se1614.entity.Food;
 
 import java.util.List;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder>{
+public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHolder>{
     public List<Food> foodList;
     public void setData(List<Food> list){
         this.foodList = list;

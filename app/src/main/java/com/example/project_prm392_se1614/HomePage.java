@@ -4,28 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
-import com.example.project_prm392_se1614.entity.User;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends AppCompatActivity {
     public TextView discover;
     public RecyclerView discoverList;
-    private FoodAdapter foodAdapter;
+    private FoodAdapters foodAdapter;
     private List<Food> foods;
     private EditText search;
     private Button search_buttons;
@@ -66,7 +60,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void onDiscoverClick(View view) {
-        foodAdapter = new FoodAdapter();
+        foodAdapter = new FoodAdapters();
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         discoverList.setLayoutManager(linearLayoutManager);
@@ -138,7 +132,7 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindingView();
-        foodAdapter = new FoodAdapter();
+        foodAdapter = new FoodAdapters();
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         discoverList.setLayoutManager(linearLayoutManager);
