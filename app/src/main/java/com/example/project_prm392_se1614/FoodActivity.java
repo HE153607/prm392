@@ -119,8 +119,10 @@ public class FoodActivity extends AppCompatActivity {
     private void onBtnThemMonAn(View view) {
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
         String token = session.getString("user",null);
-        if(token == null){
-            //TODO
+        if(token == null || !JWTUtil.isValid(token)){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
         }
         User user = JWTUtil.extractToken(token);
         final Food food = new Food();
