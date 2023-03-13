@@ -1,26 +1,12 @@
 package com.example.project_prm392_se1614;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.project_prm392_se1614.entity.Food;
-import com.example.project_prm392_se1614.entity.MyDatabase;
-import com.example.project_prm392_se1614.entity.User;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
+import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +14,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
+        String token = session.getString("user",null);
+        if(token == null || !JWTUtil.isValid(token)){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }else {
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
+        }
     }
 
 }
