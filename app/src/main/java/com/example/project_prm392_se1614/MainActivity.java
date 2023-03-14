@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bindingView();
+        //return;
 //        foodAdapter = new FoodAdapter(new FoodAdapter.IClick() {
 //            @Override
 //            public void deleteFood(Food food) {

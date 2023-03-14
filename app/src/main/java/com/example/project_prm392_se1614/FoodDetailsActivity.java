@@ -1,23 +1,19 @@
 package com.example.project_prm392_se1614;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.example.project_prm392_se1614.entity.Food;
-import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.entity.MyDatabase;
-
-import java.util.ArrayList;
+import com.example.project_prm392_se1614.entity.User;
 
 public class FoodDetailsActivity extends AppCompatActivity {
 
