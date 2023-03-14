@@ -143,8 +143,8 @@ public class FoodActivity extends AppCompatActivity {
 //        String thoigian = txtTime.getText().toString();
 //        String cachlam = txtCachLam.getText().toString();
 //        Food food = new Food(1,foodname,songuoi,thoigian,nguyenlieu,cachlam,null, 1,true);
-        MyDatabase.getInstance(this).getFoodDao().insert(food);
-        Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
+             MyDatabase.getInstance(this).getFoodDao().insert(food);
+             Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
     }
 
     @Override

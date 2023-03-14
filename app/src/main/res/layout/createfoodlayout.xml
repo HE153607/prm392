@@ -129,7 +129,7 @@
             android:layout_marginTop="36dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Bước 1"
+            android:hint="Bước 1"
             android:textSize="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.404"
@@ -151,9 +151,10 @@
 
         <Button
             android:id="@+id/btnImg"
-            android:layout_width="62dp"
-            android:layout_height="55dp"
+            android:layout_width="76dp"
+            android:layout_height="47dp"
             android:layout_marginTop="28dp"
+            android:text="Ảnh"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnThem"
             app:layout_constraintHorizontal_bias="0.617"
