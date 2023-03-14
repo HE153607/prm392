@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/ic_action_food"
+            android:background="@drawable/logo"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
 
@@ -230,6 +230,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/discoverList"
             android:layout_width="match_parent"
@@ -237,38 +238,38 @@
             android:layout_marginTop="20dp"
 
             />
-        <!--        <Button-->
-        <!--            android:id="@+id/add"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="add"-->
-        <!--            android:onClick="onAdd"-->
-        <!--            />-->
+<!--                        <Button-->
+<!--                    android:id="@+id/addfood"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="add"-->
+<!--                    android:onClick="onAdd"-->
+<!--                    />-->
 
-        <!--        <EditText-->
-        <!--            android:id="@+id/addname"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:hint="Tên" />-->
+<!--                <EditText-->
+<!--                    android:id="@+id/addname"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:hint="Tên" />-->
 
-        <!--        <EditText-->
-        <!--            android:id="@+id/images"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:hint="Ảnh"-->
-        <!--            />-->
-        <!--        <EditText-->
-        <!--            android:id="@+id/addrecipe"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:hint="Nguyên Liệu"-->
-        <!--            />-->
-        <!--        <EditText-->
-        <!--            android:id="@+id/addstep"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent"-->
-        <!--        android:hint="Cách Làm"-->
-        <!--        />-->
+<!--                <EditText-->
+<!--                    android:id="@+id/images"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:hint="Ảnh"-->
+<!--                    />-->
+<!--                <EditText-->
+<!--                    android:id="@+id/addrecipe"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:hint="Nguyên Liệu"-->
+<!--                    />-->
+<!--                <EditText-->
+<!--                    android:id="@+id/addstep"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:hint="Cách Làm"-->
+<!--                />-->
 
     </LinearLayout>
     <LinearLayout
@@ -276,7 +277,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="175dp"
         android:background="#E89F20"
-        android:paddingTop="10dp"
         android:layout_gravity="bottom"
 
         >

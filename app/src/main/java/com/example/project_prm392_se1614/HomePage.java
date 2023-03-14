@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
@@ -50,7 +51,7 @@ public class HomePage extends AppCompatActivity {
 //        addrecipe = findViewById(R.id.addrecipe);
 //        addstep = findViewById(R.id.addstep);
 //        images = findViewById(R.id.images);
-        //add = findViewById(R.id.add);
+//        add = findViewById(R.id.addfood);
     }
     private void bindingAction(){
         discover.setOnClickListener(this::onDiscoverClick);
@@ -69,6 +70,22 @@ public class HomePage extends AppCompatActivity {
         lang.setOnClickListener(this::onSelectlang);
         //add.setOnClickListener(this::onAdd);
     }
+
+//    private void onAdd(View view) {
+//        String name = addname.getText().toString().trim();
+//        String recipe = addrecipe.getText().toString().trim();
+//        String steps = addstep.getText().toString().trim();
+//        String imagess = images.getText().toString().trim();
+//        Food newf = new Food(name,null,null,recipe,steps,imagess,1,false);
+//        MyDatabase.getInstance(this).getFoodDao().insertFood(newf);
+////        User newU = new User(name,recipe,steps,false);
+////        MyDatabase.getInstance(this).getUserDao().insertUser(newU);
+//        Toast.makeText(this,"Add ok",Toast.LENGTH_SHORT).show();
+//        addname.setText("");
+//        addrecipe.setText("");
+//        addstep.setText("");
+//        images.setText("");
+//    }
 
     private void onDiscoverClick(View view) {
         foodAdapter = new FoodAdapters();
@@ -140,28 +157,10 @@ public class HomePage extends AppCompatActivity {
     }
 
 
-//    private void onAdd(View view) {
-//        String name = addname.getText().toString().trim();
-//        String recipe = addrecipe.getText().toString().trim();
-//        String steps = addstep.getText().toString().trim();
-//        String imagess = images.getText().toString().trim();
-//        Food newf = new Food(name,null,null,recipe,steps,imagess,1,false);
-//        MyDatabase.getInstance(this).getFoodDao().insertFood(newf);
-////        User newU = new User(name,recipe,steps,false);
-////        MyDatabase.getInstance(this).getUserDao().insertUser(newU);
-//        Toast.makeText(this,"Add ok",Toast.LENGTH_SHORT).show();
-//        addname.setText("");
-//        addrecipe.setText("");
-//        addstep.setText("");
-//        images.setText("");
-//    }
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
         bindingView();
         foodAdapter = new FoodAdapters();
 //        foodAdapter = new FoodAdapter(new FoodAdapter.IClick() {
