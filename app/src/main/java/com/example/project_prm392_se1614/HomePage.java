@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ public class HomePage extends AppCompatActivity {
     private EditText search;
     private Button add;
     private Button search_buttons;
+    private TextView btn_list_food;
     private TextView pig, fish, veget, beef, egg, chic, pota, toma, goat, xx, sheep, lang;
     private void bindingView(){
         discover = findViewById(R.id.discover);
@@ -46,6 +49,7 @@ public class HomePage extends AppCompatActivity {
         xx = findViewById(R.id.xx);
         sheep = findViewById(R.id.sheep);
         lang = findViewById(R.id.lang);
+        btn_list_food = findViewById(R.id.btn_list_food);
 //        addname = findViewById(R.id.addname);
 //        addrecipe = findViewById(R.id.addrecipe);
 //        addstep = findViewById(R.id.addstep);
@@ -67,9 +71,14 @@ public class HomePage extends AppCompatActivity {
         xx.setOnClickListener(this::onSelectxx);
         sheep.setOnClickListener(this::onSelectsheep);
         lang.setOnClickListener(this::onSelectlang);
+        btn_list_food.setOnClickListener(this::onListFoodClick);
         //add.setOnClickListener(this::onAdd);
     }
+    private void onListFoodClick(View view) {
+        Intent intent = new Intent(this,UserActivity.class);
+        startActivity(intent);
 
+    }
     private void onDiscoverClick(View view) {
         foodAdapter = new FoodAdapters();
         foods = new ArrayList<>();
