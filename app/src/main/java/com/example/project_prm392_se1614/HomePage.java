@@ -163,17 +163,13 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindingView();
-<<<<<<< HEAD
         foodAdapter = new FoodAdapters();
-=======
 //        foodAdapter = new FoodAdapter(new FoodAdapter.IClick() {
 //            @Override
 //            public void deleteFood(Food food) {
 //                clickDeleteFood(food);
 //            }
 //        });
-        foodAdapter = new FoodAdapter();
->>>>>>> parent of 6a5fc2c (Update Final code For HomePage)
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         discoverList.setLayoutManager(linearLayoutManager);
