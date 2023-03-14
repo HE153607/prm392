@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWO;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.project_prm392_se1614.entity.MyDatabase;
 import com.example.project_prm392_se1614.entity.User;
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomePage.class);
         startActivity(intent);
 
         }else {

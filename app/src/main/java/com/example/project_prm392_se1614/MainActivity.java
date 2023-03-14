@@ -1,31 +1,28 @@
 package com.example.project_prm392_se1614;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
-import com.example.project_prm392_se1614.entity.User;
+import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public TextView discover;
     public RecyclerView discoverList;
-    private FoodAdapter foodAdapter;
+    private FoodAdapters foodAdapters;
     private List<Food> foods;
     private EditText addname;
     private EditText addrecipe;
@@ -77,13 +74,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onDiscoverClick(View view) {
-        foodAdapter = new FoodAdapter();
+        foodAdapters = new FoodAdapters();
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         discoverList.setLayoutManager(linearLayoutManager);
-        discoverList.setAdapter(foodAdapter);
+        discoverList.setAdapter(foodAdapters);
         foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
-        foodAdapter.setData(foods);
+        foodAdapters.setData(foods);
     }
 
     private void onSelectpig(View view) {
@@ -142,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     private void SelectList(String keyword){
         foods = new ArrayList<>();
         foods = MyDatabase.getInstance(this).getFoodDao().searchfood(keyword);
-        foodAdapter.setData(foods);
+        foodAdapters.setData(foods);
     }
 
 
@@ -168,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bindingView();
 //        foodAdapter = new FoodAdapter(new FoodAdapter.IClick() {
 //            @Override
@@ -175,14 +173,26 @@ public class MainActivity extends AppCompatActivity {
 //                clickDeleteFood(food);
 //            }
 //        });
-        foodAdapter = new FoodAdapter();
+        foodAdapters = new FoodAdapters();
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         discoverList.setLayoutManager(linearLayoutManager);
-        discoverList.setAdapter(foodAdapter);
+        discoverList.setAdapter(foodAdapters);
         foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
-        foodAdapter.setData(foods);
+        foodAdapters.setData(foods);
         bindingAction();
+
+
+        SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
+        String token = session.getString("user",null);
+        if(token == null || !JWTUtil.isValid(token)){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }else {
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
+        }
 
     }
 //    private void LoadData(){

@@ -145,4 +145,8 @@ public class Food implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public byte[] getFoodImage() {
+        return null;
+    }
 }
