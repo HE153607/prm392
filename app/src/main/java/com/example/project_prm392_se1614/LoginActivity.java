@@ -18,7 +18,7 @@ import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String KEY_TOKEN = "key_access_token";
+
     MyDatabase database;
 
     @Override

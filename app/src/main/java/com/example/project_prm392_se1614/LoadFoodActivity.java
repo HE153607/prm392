@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -19,6 +21,8 @@ import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.entity.User;
+import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +36,24 @@ public class LoadFoodActivity extends AppCompatActivity {
     private List<Food> foodList;
     private EditText edtSearch;
     private void bindingView(){
-        rv= findViewById(R.id.rvData);
+        rv = findViewById(R.id.rvData);
         btnAdd = findViewById(R.id.btnAdd);
         edtSearch = findViewById(R.id.edt_search);
+
     }
     private void bindingAction(){
-        btnAdd.setOnClickListener(this::onClickButtonThem);
+//       btnAdd.setOnClickListener(this::onClickButtonThem);
     }
     private void loadData(){
+        SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
+        String token = session.getString("user",null);
+        if(token == null || !JWTUtil.isValid(token)){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
+        User user = JWTUtil.extractToken(token);
+        int id = user.getId();
         foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
 
     }
@@ -76,8 +90,8 @@ public class LoadFoodActivity extends AppCompatActivity {
     private void SearchFood() {
         String keyword = edtSearch.getText().toString().trim();
         foodList = new ArrayList<>();
-//        foodList = MyDatabase.getInstance(this).getFoodDao().searchFood(keyword);
-//        foodAdapter.SetData(foodList);
+        foodList = MyDatabase.getInstance(this).getFoodDao().searchfood(keyword);
+        foodAdapter.SetData(foodList);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +99,16 @@ public class LoadFoodActivity extends AppCompatActivity {
         setContentView(R.layout.listitem_layout);
         bindingView();
         bindingAction();
-
-        foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
+        SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
+        String token = session.getString("user",null);
+        if(token == null || !JWTUtil.isValid(token)){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
+        User user = JWTUtil.extractToken(token);
+        int userid= user.getId();
+//        foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
 
         foodAdapter = new FoodAdapter(new FoodAdapter.IClickFood() {
             @Override
@@ -109,9 +131,11 @@ public class LoadFoodActivity extends AppCompatActivity {
             }
 
 
-        });
+        });Log.e("e","e" +foodList.size());
+        foodList.add(new Food("a","a","a","a","a","a",1,true));
         foodList = new ArrayList<>();
         foodAdapter.SetData(foodList);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(foodAdapter);

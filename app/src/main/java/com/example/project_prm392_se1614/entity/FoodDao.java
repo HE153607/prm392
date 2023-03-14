@@ -31,6 +31,6 @@ public interface FoodDao {
     void updateFood(Food food);
 
     @Query("SELECT * FROM Food WHERE user_id =:userId")
-    Food getFoodById(int userId);
+    List<Food> getFoodById(int userId);
 
 }

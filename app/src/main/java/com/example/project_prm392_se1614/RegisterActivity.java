@@ -92,6 +92,8 @@ public class RegisterActivity extends AppCompatActivity {
             editor.apply();
 
             Toast.makeText(this, "create account successful", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }catch (Exception e){
             Log.e("Error Register ", "can't create account cause "+e.getMessage());
             Toast.makeText(this, "request Register account Failed", Toast.LENGTH_SHORT).show();
