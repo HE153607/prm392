@@ -22,6 +22,7 @@ public interface FoodDao {
     @Delete
     void deleteFood(Food food);
 
+
     @Insert
     void insert(Food food);
     @Query("SELECT * FROM Food")
@@ -31,4 +32,5 @@ public interface FoodDao {
 
     @Query("SELECT * FROM Food WHERE user_id =:userId")
     Food getFoodById(int userId);
+
 }
