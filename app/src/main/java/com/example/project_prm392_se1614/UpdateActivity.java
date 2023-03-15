@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.entity.User;
+import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 import java.io.InputStream;
 
@@ -41,7 +44,7 @@ public class UpdateActivity extends AppCompatActivity {
     private void bindingView(){
         txtNameFood = findViewById(R.id.textNameOrder);
         txtSoNguoi = findViewById(R.id.textPerson);
-        txtNguyenLieu = findViewById(R.id.textTime);
+        txtNguyenLieu = findViewById(R.id.textNguyenLieu);
         txtTime = findViewById(R.id.textTime);
         txtCachLam = findViewById(R.id.textCachLam);
         btnUpdate = findViewById(R.id.btnThem);
@@ -119,8 +122,9 @@ public class UpdateActivity extends AppCompatActivity {
         bindingAction();
         lFood = (Food) getIntent().getExtras().get("object_food");
         if(lFood != null){
-            txtNguyenLieu.setText(lFood.getIngredient());
+
             txtNameFood.setText(lFood.getFoodName());
+            txtNguyenLieu.setText(lFood.getIngredient());
             txtCachLam.setText(lFood.getStep());
             txtTime.setText(lFood.getTime());
             txtSoNguoi.setText(lFood.getRation());
@@ -134,23 +138,35 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
     private void updateFood(){
-        String foodname  = txtNameFood.getText().toString();
-        String songuoi = txtSoNguoi.getText().toString();
-        String nguyenlieu = txtNguyenLieu.getText().toString();
-        String thoigian = txtTime.getText().toString();
-        String cachlam = txtCachLam.getText().toString();
+        SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
+        String token = session.getString("user",null);
+        if(token == null || !JWTUtil.isValid(token)){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
+        User user = JWTUtil.extractToken(token);
+//        String foodname  = txtNameFood.getText().toString();
+//        String songuoi = txtSoNguoi.getText().toString();
+//        String nguyenlieu = txtNguyenLieu.getText().toString();
+//        String thoigian = txtTime.getText().toString();
+//        String cachlam = txtCachLam.getText().toString();
 
-        lFood.setFoodName(foodname);
-        lFood.setRation(songuoi);
-        lFood.setIngredient(nguyenlieu);
-        lFood.setTime(thoigian);
-        lFood.setStep(cachlam);
+        lFood.setFoodName(txtNameFood.getText().toString());
+        lFood.setTime(txtTime.getText().toString());
+        lFood.setActive(true);
+        lFood.setStep(txtCachLam.getText().toString());
+        lFood.setIngredient(txtNguyenLieu.getText().toString());
+        lFood.setRation(txtSoNguoi.getText().toString());
+        lFood.setImage(selectedImagePath);
+        lFood.setUserId(user.getId());
 
         MyDatabase.getInstance(this).getFoodDao().updateFood(lFood);
         Toast.makeText(this, "update", Toast.LENGTH_SHORT).show();
 
-        Intent intentResult = new Intent();
+        Intent intentResult = new Intent(this,LoadFoodActivity.class);
+        startActivity(intentResult);
         setResult(Activity.RESULT_OK,intentResult);
-        finish();;
+        finish();
     }
 }

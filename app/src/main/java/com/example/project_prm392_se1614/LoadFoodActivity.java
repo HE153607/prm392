@@ -38,7 +38,7 @@ public class LoadFoodActivity extends AppCompatActivity {
     private void bindingView(){
         rv = findViewById(R.id.rvData);
         btnAdd = findViewById(R.id.btnAdd);
-        edtSearch = findViewById(R.id.edt_search);
+//        edtSearch = findViewById(R.id.edt_search);
 
 
     }
@@ -56,7 +56,7 @@ public class LoadFoodActivity extends AppCompatActivity {
         User user = JWTUtil.extractToken(token);
         int id = user.getId();
         foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
-
+        foodAdapter.SetData(foodList);
     }
     private void onClickButtonThem(View view) {
         Intent intent = new Intent(this,FoodActivity.class);
@@ -68,6 +68,7 @@ public class LoadFoodActivity extends AppCompatActivity {
         bundle.putSerializable("object_food",food);
         intent.putExtras(bundle);
         startActivityForResult(intent,MY_REQUEST_CODE);
+
     }
 
     private void clickDeleteFood(final Food food){
@@ -79,6 +80,7 @@ public class LoadFoodActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                             MyDatabase.getInstance(LoadFoodActivity.this).getFoodDao().deleteFood(food);
                         Toast.makeText(LoadFoodActivity.this, "Delete food successfully", Toast.LENGTH_SHORT).show();
+                        loadData();
                     }
                 })
                 .setNegativeButton("No",null)
@@ -110,12 +112,11 @@ public class LoadFoodActivity extends AppCompatActivity {
         }
         User user = JWTUtil.extractToken(token);
         int userid= user.getId();
-        foodList = MyDatabase.getInstance(this).getFoodDao().getFoodById(userid);
-        Log.e("s",foodList.size()+ " s");
 
         foodAdapter = new FoodAdapter(new FoodAdapter.IClickFood() {
             @Override
             public void updateFood(Food food) {
+                loadData();
                 clickUpdateFood(food);
             }
 
@@ -139,6 +140,8 @@ public class LoadFoodActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(foodAdapter);
+        foodList = MyDatabase.getInstance(this).getFoodDao().getFoodById(userid);
+
         foodAdapter.SetData(foodList);
         bindingAction();
     }

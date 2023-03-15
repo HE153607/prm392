@@ -1,9 +1,11 @@
 package com.example.project_prm392_se1614;
 
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,7 +51,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         }
 
         holder.tvFoodName.setText(food.getFoodName());
-        holder.tvFood.setText(food.getFoodName());
+//        holder.tvFood.setText(food.getFoodName());
+//        holder.imageView.setImageBitmap(BitmapFactory.decodeFile(food.getImage()));
+//        holder.imageView.setVisibility(View.VISIBLE);
         holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,14 +80,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public class  FoodViewHolder extends RecyclerView.ViewHolder{
         private TextView tvFoodName;
         private TextView tvFood;
+        private ImageView imageView;
         private Button btnUpdate;
         private Button btnDelete;
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
              tvFoodName = itemView.findViewById(R.id.txtNameFood);
-             tvFood = itemView.findViewById(R.id.txtFood);
+//            imageView = itemView.findViewById(R.id.imageItem1);
              btnUpdate = itemView.findViewById(R.id.btnUpdate);
              btnDelete = itemView.findViewById(R.id.btnDelete);
+
         }
     }
 }
