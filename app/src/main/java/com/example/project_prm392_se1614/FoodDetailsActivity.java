@@ -15,6 +15,8 @@ import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
 import com.example.project_prm392_se1614.entity.User;
 
+import java.util.List;
+
 public class FoodDetailsActivity extends AppCompatActivity {
 
     MyDatabase database;
@@ -32,7 +34,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_details);
         int userId = 123; // Replace with the ID of the account you want to load
-        Food food = database.getInstance(this).getFoodDao().getFoodById(userId);
+        List<Food > food = database.getInstance(this).getFoodDao().getFoodById(userId);
         User user = database.getInstance(this).getUserDao().getUserById(userId);
 
 // Food image and name
