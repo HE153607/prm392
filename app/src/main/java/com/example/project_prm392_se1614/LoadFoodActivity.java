@@ -40,6 +40,7 @@ public class LoadFoodActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.btnAdd);
         edtSearch = findViewById(R.id.edt_search);
 
+
     }
     private void bindingAction(){
 //       btnAdd.setOnClickListener(this::onClickButtonThem);
@@ -98,7 +99,8 @@ public class LoadFoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listitem_layout);
         bindingView();
-        bindingAction();
+
+
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
         String token = session.getString("user",null);
         if(token == null || !JWTUtil.isValid(token)){
@@ -108,7 +110,8 @@ public class LoadFoodActivity extends AppCompatActivity {
         }
         User user = JWTUtil.extractToken(token);
         int userid= user.getId();
-//        foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
+        foodList = MyDatabase.getInstance(this).getFoodDao().getFoodById(userid);
+        Log.e("s",foodList.size()+ " s");
 
         foodAdapter = new FoodAdapter(new FoodAdapter.IClickFood() {
             @Override
@@ -121,23 +124,22 @@ public class LoadFoodActivity extends AppCompatActivity {
                 clickDeleteFood(food);
             }
         });
-        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                    SearchFood();
-                }
-                return false;
-            }
-
-
-        });Log.e("e","e" +foodList.size());
-        foodList.add(new Food("a","a","a","a","a","a",1,true));
+//        edtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+//                    SearchFood();
+//                }
+//                return false;
+//            }
+//
+//
+//        });
         foodList = new ArrayList<>();
-        foodAdapter.SetData(foodList);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(foodAdapter);
+        foodAdapter.SetData(foodList);
+        bindingAction();
     }
 }

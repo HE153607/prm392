@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class HomePage extends AppCompatActivity {
     private EditText search;
     private Button add;
     private Button search_buttons;
-    private TextView pig, fish, veget, beef, egg, chic, pota, toma, goat, xx, sheep, lang;
+    private TextView btn_list_food, pig, fish, veget, beef, egg, chic, pota, toma, goat, xx, sheep, lang;
     private void bindingView(){
         discover = findViewById(R.id.discover);
         discoverList = findViewById(R.id.discoverList);
@@ -47,6 +48,7 @@ public class HomePage extends AppCompatActivity {
         xx = findViewById(R.id.xx);
         sheep = findViewById(R.id.sheep);
         lang = findViewById(R.id.lang);
+        btn_list_food = findViewById(R.id.btn_list_food);
 //        addname = findViewById(R.id.addname);
 //        addrecipe = findViewById(R.id.addrecipe);
 //        addstep = findViewById(R.id.addstep);
@@ -68,8 +70,14 @@ public class HomePage extends AppCompatActivity {
         xx.setOnClickListener(this::onSelectxx);
         sheep.setOnClickListener(this::onSelectsheep);
         lang.setOnClickListener(this::onSelectlang);
+//        btn_list_food.setOnClickListener(this::onClickListFood);
         //add.setOnClickListener(this::onAdd);
     }
+
+//    private void onClickListFood(View view) {
+//        Intent i = new Intent(this,UserActivity.class);
+//        startActivity(i);
+//    }
 
 //    private void onAdd(View view) {
 //        String name = addname.getText().toString().trim();
@@ -98,12 +106,12 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void onSelectpig(View view) {
-        String keyword = pig.getText().toString().trim();
-        SelectList(keyword);
+        Intent i = new Intent(this,UserActivity.class);
+        startActivity(i);
     }
     private void onSelectfish(View view) {
-        String keyword = fish.getText().toString().trim();
-        SelectList(keyword);
+        Intent i = new Intent(this,LoadFoodActivity.class);
+        startActivity(i);
     }
     private void onSelectveget(View view) {
         String keyword = veget.getText().toString().trim();
