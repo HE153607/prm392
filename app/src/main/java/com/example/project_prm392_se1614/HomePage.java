@@ -106,7 +106,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void onSelectpig(View view) {
-        Intent i = new Intent(this,UserActivity.class);
+        Intent i = new Intent(this,FoodActivity.class);
         startActivity(i);
     }
     private void onSelectfish(View view) {
