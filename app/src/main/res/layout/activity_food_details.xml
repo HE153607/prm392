@@ -10,6 +10,7 @@
     android:paddingRight="16dp"
     android:orientation="horizontal"
     android:gravity="center"
+    android:background="#F8DAA5"
     tools:context=".FoodDetailsActivity">
 
     <ScrollView
@@ -90,16 +91,15 @@
                 android:textColor="@color/black"
                 android:textSize="32dp" />
 
-                <ListView
-                    android:id="@+id/listMaterial"
-                    android:layout_width="fill_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="2dip"
-                    android:layout_marginBottom="2dip"
-                    android:drawSelectorOnTop="false"
-                    android:visibility="visible"
-                    android:layout_below="@+id/textView2"
-                    android:layout_above="@+id/butt1" />
+                <TextView
+                    android:id="@+id/txtMaterial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -255,13 +255,18 @@
                     android:textColor="@color/black" />
             </LinearLayout>
 
-            <GridView
-                android:id="@+id/gridview"
-                android:layout_width="fill_parent"
-                android:layout_height="329dp"
-                android:footerDividersEnabled="false"
-                android:numColumns="2"
-                android:padding="1dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/discoverList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

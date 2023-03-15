@@ -1,6 +1,10 @@
 package com.example.project_prm392_se1614;
 
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -9,90 +13,79 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
 import com.example.project_prm392_se1614.entity.User;
+import com.example.project_prm392_se1614.jwtutil.JWTUtil;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FoodDetailsActivity extends AppCompatActivity {
 
     MyDatabase database;
-
-    // fake data getIngredient()
-    String[] ListElements = new String[]{
-            "Tỏi",
-            "Nước Mắm",
-            "Bơ Tường An",
-            "Khoai tây"
-    };
-
+    private List<Food> foodList;
+    public RecyclerView discoverList;
+    private FoodDetailAdapter foodDetailAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
+        String token = session.getString("user",null);
         setContentView(R.layout.activity_food_details);
-        int userId = 123; // Replace with the ID of the account you want to load
-        List<Food > food = database.getInstance(this).getFoodDao().getFoodById(userId);
-        User user = database.getInstance(this).getUserDao().getUserById(userId);
+        User user = JWTUtil.extractToken(token);
+        int userid = user.getId();
+        foodList = database.getInstance(this).getFoodDao().getFoodById(userid);
+        User userID = database.getInstance(this).getUserDao().getUserById(userid);
 
 // Food image and name
         ImageView imgFoodDetail = findViewById(R.id.imgFoodDetail);
-        Glide.with(this)
-                .load("https://cdn.tgdd.vn/2021/06/CookProduct/t1-1200x676-10.jpg") //no data img demo
-//                .load(food.getFoodImage())
-                .into(imgFoodDetail);
+        imgFoodDetail.setImageResource(R.drawable.img2);
+
         TextView txtFoodDetail = findViewById(R.id.txtFoodDetail);
-        txtFoodDetail.setText("Khoai tây chiên bơ tỏi"); // nameFood() demo
-//        txtFoodDetail.setText(food.getFoodName()); // get nameFood() from database
+        for (Food food : foodList) {
+            txtFoodDetail.setText(food.getFoodName());
+        }
 
 // info User
         ImageView imgUserName = findViewById(R.id.imgUserName);
-        Glide.with(this)
-                .load("https://assets.stickpng.com/images/585e4bcdcb11b227491c3396.png") //no data img demo
-//                .load(user.getProfileImage())
-                .into(imgUserName);
+        Picasso.get().load("https://i.imgur.com/DvpvklR.png").into(imgUserName);
 
         TextView txtUserName = findViewById(R.id.txtUserName);
-        txtUserName.setText("Hoang");// get nameUser() demo
-//        txtUserName.setText(user.getName()); // get nameUser() from database
+        txtUserName.setText(userID.getName()); // get nameUser() from database
 
-//        TextView txtTagName = findViewById(R.id.txtTagName);
-//        txtTagName.setText("@Hoang");
+        TextView txtTagName = findViewById(R.id.txtTagName);
+        txtTagName.setText("@"+userID.getEmail());
 
 // getInstance list
-        ListView listView = findViewById(R.id.listMaterial);
-//        TextView textView= (TextView) findViewById(R.id.textList);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.instance_list_layout, R.id.textView, ListElements);
-        listView.setAdapter(adapter);
-//        List<Food> items = database.getInstance(this).getFoodDao().getFoodById(id).getIngredient();
-//        MyAdapter adapter = new MyAdapter(this, items);
-//        listView.setAdapter((ListAdapter) itemAdapter);
-
+        TextView txtMaterial = findViewById(R.id.txtMaterial);
+        for (Food food : foodList) {
+            txtMaterial.setText(food.getIngredient());
+        }
 // step cooking
         TextView txtMaking = findViewById(R.id.txtMaking);
-        // getStep() demo
-        txtMaking.setText("Sơ chế khoai tây\n" +
-                "Với 4 củ khoai tây sau khi mua về, bạn rửa thật kỹ và sạch bùn đất bám ở lớp vỏ bên ngoài.\n" +
-                "\n" +
-                "Bật bếp với lửa vừa, cho 1 lít nước vào nồi đun sôi rồi cho khoai tây vào trụng sơ qua trong 5 phút, sau đó vớt ra, để ráo.\n" +
-                "\n" +
-                "Cuối cùng, bạn cắt khoai tây thành 4 phần đều nhau là được.");
         // getStep from database
-//        txtMaking.setText(food.getStep());
+        for (Food food : foodList) {
+            txtMaking.setText(food.getStep());
+        }
 
 // info post created by user
         ImageView imgByUserName = findViewById(R.id.imgByUser);
-        Glide.with(this)
-                .load("https://assets.stickpng.com/images/585e4bcdcb11b227491c3396.png") //no data img demo
-//                .load(user.getProfileImage())
-                .into(imgByUserName);
+        Picasso.get().load("https://i.imgur.com/DvpvklR.png").into(imgByUserName);
+
 
         TextView txtByUser = findViewById(R.id.txtByUser);
-        txtByUser.setText("Hoàng");
-//        txtByUser.setText(user.getName());
+        txtByUser.setText(user.getName());
 
 // comment function
         TextView txtComment = findViewById(R.id.txtComment);
@@ -106,21 +99,13 @@ public class FoodDetailsActivity extends AppCompatActivity {
             }
         });
 
-        TextView txtNewFood = findViewById(R.id.newFoodByUser);
-        txtNewFood.setText("Những món mới của Hoang");
-//        txtNewFood.setText("Những món mới của"+ user.getName());
-
-//        ArrayList foodByUserData=new ArrayList<>();
-//        GridView simpleList = (GridView) findViewById(R.id.gridview);
-//        foodByUserData.add(new ItemFood("Mon 1",R.drawable.menu_icon));
-//        foodByUserData.add(new ItemFood("Mon 2",R.drawable.menu_icon));
-//        foodByUserData.add(new ItemFood("Mon 3",R.drawable.menu_icon));
-//        foodByUserData.add(new ItemFood("Mon 4",R.drawable.menu_icon));
-//        foodByUserData.add(new ItemFood("Mon 5",R.drawable.menu_icon));
-//        foodByUserData.add(new ItemFood("Mon 6",R.drawable.menu_icon));
-//
-//        MyAdapter myAdapter=new MyAdapter(this,R.layout.activity_food_details,foodByUserData);
-//        simpleList.setAdapter(myAdapter);
+        foodDetailAdapter = new FoodDetailAdapter();
+        foodList = new ArrayList<>();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3); // số cột bạn muốn hiển thị
+        discoverList = findViewById(R.id.discoverList);
+        discoverList.setLayoutManager(gridLayoutManager);
+        discoverList.setAdapter(foodDetailAdapter);
+        foodList = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+        foodDetailAdapter.setData(foodList);
     }
 }
-
