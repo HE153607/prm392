@@ -10,6 +10,7 @@
     android:paddingRight="16dp"
     android:orientation="horizontal"
     android:gravity="center"
+    android:background="#F8DAA5"
     tools:context=".FoodDetailsActivity">
 
     <ScrollView
