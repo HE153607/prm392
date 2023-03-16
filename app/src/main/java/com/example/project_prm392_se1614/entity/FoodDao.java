@@ -25,12 +25,13 @@ public interface FoodDao {
 
     @Insert
     void insert(Food food);
-    @Query("SELECT * FROM Food")
+    @Query("SELECT * FROM Food ")
     List<Food> getFoods();
     @Update
     void updateFood(Food food);
 
-    @Query("SELECT * FROM Food WHERE user_id =:userId")
-    List<Food> getFoodById(int userId);
-
+    @Query("SELECT * FROM Food WHERE id =:userId")
+    Food getFoodById(int userId);
+    @Query("SELECT * FROM Food WHERE user_id =:uId ")
+    List<Food> getListFoodsById(int uId);
 }

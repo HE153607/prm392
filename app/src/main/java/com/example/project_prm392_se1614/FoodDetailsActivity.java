@@ -1,8 +1,11 @@
 package com.example.project_prm392_se1614;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,9 +37,11 @@ import java.util.List;
 public class FoodDetailsActivity extends AppCompatActivity {
 
     MyDatabase database;
+    private Food foodList1;
     private List<Food> foodList;
     public RecyclerView discoverList;
     private FoodDetailAdapter foodDetailAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,17 +50,21 @@ public class FoodDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_details);
         User user = JWTUtil.extractToken(token);
         int userid = user.getId();
-        foodList = database.getInstance(this).getFoodDao().getFoodById(userid);
+        foodList1 = database.getInstance(this).getFoodDao().getFoodById(FoodAdapters.foodId);
         User userID = database.getInstance(this).getUserDao().getUserById(userid);
+
+        Resources resources = getResources();
+        int imageResId =resources.getIdentifier(foodList1.getImage(), "drawable", getPackageName());
+
 
 // Food image and name
         ImageView imgFoodDetail = findViewById(R.id.imgFoodDetail);
-        imgFoodDetail.setImageResource(R.drawable.img2);
+        imgFoodDetail.setImageResource(imageResId);
 
         TextView txtFoodDetail = findViewById(R.id.txtFoodDetail);
-        for (Food food : foodList) {
-            txtFoodDetail.setText(food.getFoodName());
-        }
+
+            txtFoodDetail.setText(foodList1.getFoodName());
+
 
 // info User
         ImageView imgUserName = findViewById(R.id.imgUserName);
@@ -69,15 +78,14 @@ public class FoodDetailsActivity extends AppCompatActivity {
 
 // getInstance list
         TextView txtMaterial = findViewById(R.id.txtMaterial);
-        for (Food food : foodList) {
-            txtMaterial.setText(food.getIngredient());
-        }
+            txtMaterial.setText(foodList1.getIngredient());
+
 // step cooking
         TextView txtMaking = findViewById(R.id.txtMaking);
         // getStep from database
-        for (Food food : foodList) {
-            txtMaking.setText(food.getStep());
-        }
+
+            txtMaking.setText(foodList1.getStep());
+
 
 // info post created by user
         ImageView imgByUserName = findViewById(R.id.imgByUser);

@@ -1,7 +1,9 @@
 package com.example.project_prm392_se1614;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import java.util.List;
 
 public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHolder>{
     public List<Food> foodList;
+    public static int foodId;
     //public IClick iClicks;
     public void setData(List<Food> list){
         this.foodList = list;
@@ -46,14 +49,24 @@ public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHold
 //       });
        String imagename = food.getImage();
        Context context = holder.itemView.getContext();
+
        if(food == null){
            return;
        }
+
         Resources resources = context.getResources();
         int imageResId =resources.getIdentifier(imagename, "drawable", context.getPackageName());
         if (imageResId != 0) {
             Drawable drawable = resources.getDrawable(imageResId);
             holder.foodimage.setBackground(drawable);
+            holder.foodimage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context,FoodDetailsActivity.class);
+                    foodId = food.getId();
+                    context.startActivity(intent);
+                }
+            });
         }
        holder.fname.setText(food.getFoodName());
 
@@ -71,6 +84,7 @@ public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHold
     public class FoodViewHolder extends RecyclerView.ViewHolder{
          public ImageView foodimage;
          public TextView fname;
+
          //public Button delete;
 
         public FoodViewHolder(@NonNull View itemView) {

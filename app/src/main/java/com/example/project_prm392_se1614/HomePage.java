@@ -30,8 +30,9 @@ public class HomePage extends AppCompatActivity {
     private EditText search;
     private Button add;
     private Button search_buttons;
-    private TextView btn_list_food, pig, fish, veget, beef, egg, chic, pota, toma, goat, xx, sheep, lang;
+    private TextView btn_list_food, pig, fish, veget, beef, egg, chic, pota, toma, goat, xx, sheep, lang, urkit;
     private void bindingView(){
+        urkit = findViewById(R.id.urkit);
         discover = findViewById(R.id.discover);
         discoverList = findViewById(R.id.discoverList);
         search = findViewById(R.id.search);
@@ -70,8 +71,14 @@ public class HomePage extends AppCompatActivity {
         xx.setOnClickListener(this::onSelectxx);
         sheep.setOnClickListener(this::onSelectsheep);
         lang.setOnClickListener(this::onSelectlang);
+        urkit.setOnClickListener(this::onYourKitchenClick);
 //        btn_list_food.setOnClickListener(this::onClickListFood);
         //add.setOnClickListener(this::onAdd);
+    }
+
+    private void onYourKitchenClick(View view) {
+        Intent i = new Intent(this,LoadFoodActivity.class);
+        startActivity(i);
     }
 
 //    private void onClickListFood(View view) {
@@ -106,12 +113,12 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void onSelectpig(View view) {
-        Intent i = new Intent(this,FoodActivity.class);
-        startActivity(i);
+        String keyword = pig.getText().toString().trim();
+        SelectList(keyword);
     }
     private void onSelectfish(View view) {
-        Intent i = new Intent(this,LoadFoodActivity.class);
-        startActivity(i);
+        String keyword = fish.getText().toString().trim();
+        SelectList(keyword);
     }
     private void onSelectveget(View view) {
         String keyword = veget.getText().toString().trim();

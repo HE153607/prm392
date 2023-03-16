@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.entity.Role;
 import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
@@ -35,16 +36,36 @@ public class LoadFoodActivity extends AppCompatActivity {
     private FoodAdapter foodAdapter;
     private List<Food> foodList;
     private EditText edtSearch;
+    private Button addfood,btnLogout;
     private void bindingView(){
         rv = findViewById(R.id.rvData);
         btnAdd = findViewById(R.id.btnAdd);
+        addfood = findViewById(R.id.addfood);
+        btnLogout = findViewById(R.id.btnlogout);
 //        edtSearch = findViewById(R.id.edt_search);
 
 
     }
     private void bindingAction(){
 //       btnAdd.setOnClickListener(this::onClickButtonThem);
+        addfood.setOnClickListener(this::onAddFoodClick);
+        btnLogout.setOnClickListener(this::onLogoutClick);
     }
+
+    private void onLogoutClick(View view) {
+        SharedPreferences s = getSharedPreferences("login",MODE_PRIVATE);
+        SharedPreferences.Editor e = s.edit();
+        e.clear();
+        e.apply();
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+    }
+
+    private void onAddFoodClick(View view) {
+        Intent intent = new Intent(this, FoodActivity.class);
+        startActivity(intent);
+    }
+
     private void loadData(){
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
         String token = session.getString("user",null);
@@ -140,7 +161,12 @@ public class LoadFoodActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(foodAdapter);
-        foodList = MyDatabase.getInstance(this).getFoodDao().getFoodById(userid);
+        if(user.getRole() == Role.ADMIN){
+            foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
+        }else{
+            foodList = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(userid);
+
+        }
 
         foodAdapter.SetData(foodList);
         bindingAction();

@@ -3,6 +3,7 @@ package com.example.project_prm392_se1614;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -165,6 +166,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new Thread(() -> {
+            List<Food> foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+            for(int i = 0; i< foods.size(); i++){
+                System.out.println("food "+i+" user "+foods.get(i).getUserId()+" image "+foods.get(i).getImage());
+
+            }
+        }).start();
+
 
         bindingView();
         //return;
@@ -186,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
         String token = session.getString("user",null);
+
         if(token == null || !JWTUtil.isValid(token)){
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
