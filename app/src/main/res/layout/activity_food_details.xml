@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="TextView"
+                android:text="Đầu bếp"
                 android:textColor="@color/black"
                 android:textFontWeight="@integer/material_motion_duration_short_1"
                 android:textSize="32dp" />
@@ -142,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
-                android:text="TextView"
+                android:text="Text View"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="25dp" />
@@ -249,7 +249,7 @@
                     android:id="@+id/newFoodByUser"
                     android:layout_width="322dp"
                     android:layout_height="52dp"
-                    android:text="TextView"
+                    android:text="Khám phá thêm"
                     android:textSize="20dp"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/black" />

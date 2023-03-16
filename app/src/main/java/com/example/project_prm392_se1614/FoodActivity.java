@@ -137,6 +137,7 @@ public class FoodActivity extends AppCompatActivity {
 
 
 
+
 //        String foodname = txtNameFood.getText().toString();
 //        String songuoi = txtSoNguoi.getText().toString();
 //        String nguyenlieu = txtNguyenLieu.getText().toString();
@@ -145,6 +146,8 @@ public class FoodActivity extends AppCompatActivity {
 //        Food food = new Food(1,foodname,songuoi,thoigian,nguyenlieu,cachlam,null, 1,true);
              MyDatabase.getInstance(this).getFoodDao().insert(food);
              Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
+             Intent intent = new Intent(this,HomePage.class);
+             startActivity(intent);
     }
 
     @Override
