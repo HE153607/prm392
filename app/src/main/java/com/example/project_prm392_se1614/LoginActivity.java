@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.dao.MyDatabase;
 import com.example.project_prm392_se1614.entity.User;
-import com.example.project_prm392_se1614.entity.UserDao;
+import com.example.project_prm392_se1614.repository.UserDao;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 public class LoginActivity extends AppCompatActivity {

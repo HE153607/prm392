@@ -12,12 +12,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.dao.MyDatabase;
 import com.example.project_prm392_se1614.entity.Role;
 import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
-
-import java.util.logging.Logger;
 
 public class RegisterActivity extends AppCompatActivity {
 

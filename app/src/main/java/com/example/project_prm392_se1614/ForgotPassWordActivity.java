@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.dao.MyDatabase;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,9 +20,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.UUID;
 
-import javax.mail.IllegalWriteException;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;

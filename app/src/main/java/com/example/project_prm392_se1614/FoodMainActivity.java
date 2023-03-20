@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
-import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.dao.MyDatabase;
 
 import java.io.InputStream;
 

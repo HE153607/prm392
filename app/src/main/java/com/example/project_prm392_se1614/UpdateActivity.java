@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
-import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.dao.MyDatabase;
 import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 

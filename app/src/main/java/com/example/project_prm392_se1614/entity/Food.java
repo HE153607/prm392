@@ -27,59 +27,33 @@ public class Food implements Serializable {
     @ColumnInfo(name="food_name")
     private String foodName;
 
-    @ColumnInfo(name="ration")
-    private String ration;
-
-    @ColumnInfo(name="time")
-    private String time;
 
     @ColumnInfo(name="ingredient")
     private String ingredient;
 
-    @ColumnInfo(name="step")
-    private String step;
 
     @ColumnInfo(name="image")
-    private String image;
+    private byte[] image;
 
     @ColumnInfo(name="user_id")
     private int userId;
 
-    @ColumnInfo(name="active")
-    private Boolean active;
+    @ColumnInfo(name="status")
+    private int status;
 
     @Ignore
     private User user;
 
-    public Food() {
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public Food(String foodName, String ration, String time, String ingredient, String step, String image, int userId, Boolean active) {
-
+    public Food(String foodName, String ingredient, byte[] image, int userId, int status, User user) {
         this.foodName = foodName;
-        this.ration = ration;
-        this.time = time;
         this.ingredient = ingredient;
-        this.step = step;
         this.image = image;
         this.userId = userId;
-        this.active = active;
+        this.status = status;
+        this.user = user;
     }
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
+    public Food() {
     }
 
     public int getId() {
@@ -98,22 +72,6 @@ public class Food implements Serializable {
         this.foodName = foodName;
     }
 
-    public String getRation() {
-        return ration;
-    }
-
-    public void setRation(String ration) {
-        this.ration = ration;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public String getIngredient() {
         return ingredient;
     }
@@ -122,20 +80,28 @@ public class Food implements Serializable {
         this.ingredient = ingredient;
     }
 
-    public String getStep() {
-        return step;
-    }
-
-    public void setStep(String step) {
-        this.step = step;
-    }
-
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public User getUser() {
@@ -144,9 +110,5 @@ public class Food implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public byte[] getFoodImage() {
-        return null;
     }
 }

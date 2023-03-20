@@ -16,17 +16,15 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
-import com.example.project_prm392_se1614.entity.MyDatabase;
+import com.example.project_prm392_se1614.dao.MyDatabase;
 import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 import java.io.InputStream;
-import java.util.Date;
 
 public class FoodActivity extends AppCompatActivity {
 
@@ -126,14 +124,14 @@ public class FoodActivity extends AppCompatActivity {
         }
         User user = JWTUtil.extractToken(token);
         final Food food = new Food();
-        food.setFoodName(txtNameFood.getText().toString());
-        food.setTime(txtTime.getText().toString());
-        food.setActive(true);
-        food.setStep(txtCachLam.getText().toString());
-        food.setIngredient(txtNguyenLieu.getText().toString());
-        food.setRation(txtSoNguoi.getText().toString());
-        food.setImage(selectedImagePath);
-        food.setUserId(user.getId());
+//        food.setFoodName(txtNameFood.getText().toString());
+//        food.setTime(txtTime.getText().toString());
+//        food.setActive(true);
+//        food.setStep(txtCachLam.getText().toString());
+//        food.setIngredient(txtNguyenLieu.getText().toString());
+//        food.setRation(txtSoNguoi.getText().toString());
+//        food.setImage(selectedImagePath);
+//        food.setUserId(user.getId());
 
 
 
