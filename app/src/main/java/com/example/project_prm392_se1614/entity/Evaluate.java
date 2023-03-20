@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-@Entity(tableName = "user_food",
+@Entity(tableName = "evaluate",
         foreignKeys = {@ForeignKey(
                 entity = User.class,
                 parentColumns = "id",
