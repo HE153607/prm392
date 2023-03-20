@@ -82,10 +82,12 @@ public class User {
         this.active = active;
     }
 
-    public User( String password, String name, String email, Boolean active) {
+    public User(int id, String password, String name, String email, Role role, Boolean active) {
+        this.id = id;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.role = role;
         this.active = active;
     }
 }

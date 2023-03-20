@@ -43,7 +43,11 @@ public class UserActivity extends AppCompatActivity {
 //        mUser.setEmail(Email);
 //        mUser.setPassword(Password);
 //        mUser.setActive(true);
-        User user = new User(Password,UserName,Email,true);
+        User user = new User();
+        user.setName(edtName.getText().toString().trim());
+        user.setPassword(edtEmail.getText().toString().trim());
+        user.setEmail(edtPassword.getText().toString().trim());
+        user.setActive(true);
         user.setRole(Role.USER);
         if(MyDatabase.getInstance(this).getUserDao().getUserByEmail(user.getEmail()) != null){
             Toast.makeText(this, "Email was available", Toast.LENGTH_SHORT).show();

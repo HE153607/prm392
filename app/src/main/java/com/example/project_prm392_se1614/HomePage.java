@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.dao.MyDatabase;
+import com.example.project_prm392_se1614.entity.User;
+import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -183,11 +186,19 @@ public class HomePage extends AppCompatActivity {
 //                clickDeleteFood(food);
 //            }
 //        });
+        SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
+        String token = session.getString("user",null);
+        if(token == null || !JWTUtil.isValid(token)){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
+        User user = JWTUtil.extractToken(token);
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         discoverList.setLayoutManager(linearLayoutManager);
         discoverList.setAdapter(foodAdapter);
-        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+        foods = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(user.getId());
         foodAdapter.setData(foods);
         bindingAction();
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,12 +24,16 @@ import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.dao.MyDatabase;
+import com.example.project_prm392_se1614.entity.FoodMaterial;
+import com.example.project_prm392_se1614.entity.Material;
 import com.example.project_prm392_se1614.entity.Role;
 import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FoodActivity extends AppCompatActivity {
 
@@ -40,6 +46,7 @@ public class FoodActivity extends AppCompatActivity {
     private Button btnImg;
     private ImageView imgFood;
     private String selectedImagePath;
+    private Context context ;
     private static final int REQUEST_CODE_STORAGE_PERMISSION =1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
 
@@ -153,18 +160,19 @@ public class FoodActivity extends AppCompatActivity {
 
 
         }
+        Material Material  = new Material(food.getIngredient(), true);
+        Material Material1  = new Material("Cu", true);
+        List<Material> a = new ArrayList<>();
+        a.add(Material);
+        a.add(Material1);
 
 
+       MyDatabase.getInstance(this).getFoodDao().insertFoodWithMaterials(this,food,a);
 
 
+//        MyDatabase.getInstance(this).getFoodDao().insertFood(food);
 
-//        String foodname = txtNameFood.getText().toString();
-//        String songuoi = txtSoNguoi.getText().toString();
-//        String nguyenlieu = txtNguyenLieu.getText().toString();
-//        String thoigian = txtTime.getText().toString();
-//        String cachlam = txtCachLam.getText().toString();
-//        Food food = new Food(1,foodname,songuoi,thoigian,nguyenlieu,cachlam,null, 1,true);
-             MyDatabase.getInstance(this).getFoodDao().;
+
              Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
              Intent intent = new Intent(this,HomePage.class);
              startActivity(intent);

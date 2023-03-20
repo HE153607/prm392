@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.dao.MyDatabase;
+import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
 import java.util.ArrayList;
@@ -165,13 +166,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new Thread(() -> {
-            List<Food> foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
-            for(int i = 0; i< foods.size(); i++){
-                System.out.println("food "+i+" user "+foods.get(i).getUserId()+" image "+foods.get(i).getImage());
-
-            }
-        }).start();
+//        new Thread(() -> {
+////            List<Food> foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+//            for(int i = 0; i< foods.size(); i++){
+//                System.out.println("food "+i+" user "+foods.get(i).getUserId()+" image "+foods.get(i).getImage());
+//
+//            }
+//        }).start();
 
 
         bindingView();
@@ -182,12 +183,13 @@ public class MainActivity extends AppCompatActivity {
 //                clickDeleteFood(food);
 //            }
 //        });
+
         foodAdapters = new FoodAdapters();
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         discoverList.setLayoutManager(linearLayoutManager);
         discoverList.setAdapter(foodAdapters);
-        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+//        foods = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(1);
         foodAdapters.setData(foods);
         bindingAction();
 

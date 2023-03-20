@@ -89,7 +89,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
              tvFoodName = itemView.findViewById(R.id.txtNameFood);
-            imageView = itemView.findViewById(R.id.imageItem1);
+             imageView = itemView.findViewById(R.id.imageItem1);
              btnUpdate = itemView.findViewById(R.id.btnUpdate);
              btnDelete = itemView.findViewById(R.id.btnDelete);
 

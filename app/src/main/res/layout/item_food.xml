@@ -10,7 +10,7 @@
       android:id="@+id/foodimage"
       android:layout_width="300dp"
       android:layout_height="300dp"
-      android:background="@drawable/img2"
+      android:src="@drawable/img2"
       />
     <TextView
         android:id="@+id/name"

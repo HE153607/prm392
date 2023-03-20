@@ -2,6 +2,8 @@ package com.example.project_prm392_se1614;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,6 +70,8 @@ public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHold
 //                }
 //            });
 //        }
+        Bitmap bitmap = BitmapFactory.decodeByteArray(food.getImage(), 0, food.getImage().length);
+        holder.foodimage.setImageBitmap(bitmap);
        holder.fname.setText(food.getFoodName());
 
     }

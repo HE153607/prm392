@@ -35,6 +35,8 @@ public class FoodMaterial {
     private boolean status;
 
     public FoodMaterial(long foodId, long materialId) {
+        this.foodId = (int)foodId;
+        this.materialId = (int)materialId;
     }
 
     public FoodMaterial(int foodId, int materialId, boolean status) {

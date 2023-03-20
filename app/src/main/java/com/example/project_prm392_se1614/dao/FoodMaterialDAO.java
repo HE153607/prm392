@@ -11,18 +11,18 @@ import java.util.List;
 
 @Dao
 public interface FoodMaterialDAO {
-//    @Insert(onConflict = OnConflictStrategy.IGNORE)
-//    void insert(FoodMaterial foodMaterialCross);
-//
-//    @Query("SELECT * FROM user_food WHERE food_id = :foodId")
-//    List<FoodMaterial> findByFoodId(long foodId);
-//
-//    @Query("SELECT * FROM user_food WHERE material_id = :materialId")
-//    List<FoodMaterial> findByMaterialId(long materialId);
-//
-//    @Query("DELETE FROM user_food WHERE food_id = :foodId")
-//    void deleteByFoodId(long foodId);
-//
-//    @Query("DELETE FROM user_food WHERE material_id = :materialId")
-//    void deleteByMaterialId(long materialId);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert(FoodMaterial foodMaterialCross);
+
+    @Query("SELECT * FROM food_material WHERE food_id = :foodId")
+    List<FoodMaterial> findByFoodId(long foodId);
+
+    @Query("SELECT * FROM food_material WHERE material_id = :materialId")
+    List<FoodMaterial> findByMaterialId(long materialId);
+
+    @Query("DELETE FROM food_material WHERE food_id = :foodId")
+    void deleteByFoodId(long foodId);
+
+    @Query("DELETE FROM food_material WHERE material_id = :materialId")
+    void deleteByMaterialId(long materialId);
 }

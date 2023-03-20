@@ -160,7 +160,7 @@ public class LoadFoodActivity extends AppCompatActivity {
         if(user.getRole() == Role.ADMIN){
             foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
         }else{
-            foodList = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(userid);
+            foodList = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(user.getId());
 
         }
 

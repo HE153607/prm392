@@ -29,7 +29,11 @@ public class Material {
         this.name = name;
         this.status = status;
     }
+    public Material(String name, boolean status) {
 
+        this.name = name;
+        this.status = status;
+    }
     public int getId() {
         return id;
     }

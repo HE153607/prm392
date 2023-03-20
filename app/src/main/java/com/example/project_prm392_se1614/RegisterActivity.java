@@ -71,10 +71,11 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        User user = new User(pass.getText().toString().trim(),
-                name.getText().toString().trim(),
-                email.getText().toString().trim(),
-                true);
+        User user = new User();
+        user.setName(name.getText().toString().trim());
+        user.setPassword(pass.getText().toString().trim());
+        user.setEmail(email.getText().toString().trim());
+        user.setActive(true);
         user.setRole(Role.USER);
         try {
             if(database.getUserDao().getUserByEmail(user.getEmail()) != null){

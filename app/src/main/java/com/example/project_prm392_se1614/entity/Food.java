@@ -59,6 +59,16 @@ public class Food implements Serializable {
     public Food() {
     }
 
+    public Food(int id, String foodName, String ingredient, byte[] image, String step, int userId, int status) {
+        this.id = id;
+        this.foodName = foodName;
+        this.ingredient = ingredient;
+        this.image = image;
+        Step = step;
+        this.userId = userId;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }
