@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 import kotlin.jvm.Transient;
 
-@Entity(tableName = "Food",
+@Entity(tableName = "food",
         foreignKeys = @ForeignKey(
                 entity = User.class,
                 parentColumns = "id",
