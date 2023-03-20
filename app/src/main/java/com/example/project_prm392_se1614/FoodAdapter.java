@@ -1,5 +1,6 @@
 package com.example.project_prm392_se1614;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 //        holder.tvFood.setText(food.getFoodName());
 //        holder.imageView.setImageBitmap(BitmapFactory.decodeFile(food.getImage()));
 //        holder.imageView.setVisibility(View.VISIBLE);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(food.getImage(), 0, food.getImage().length);
+        holder.imageView.setImageBitmap(bitmap);
         holder.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +89,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
              tvFoodName = itemView.findViewById(R.id.txtNameFood);
-//            imageView = itemView.findViewById(R.id.imageItem1);
+            imageView = itemView.findViewById(R.id.imageItem1);
              btnUpdate = itemView.findViewById(R.id.btnUpdate);
              btnDelete = itemView.findViewById(R.id.btnDelete);
 

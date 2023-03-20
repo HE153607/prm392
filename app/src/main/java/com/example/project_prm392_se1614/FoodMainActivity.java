@@ -111,16 +111,16 @@ public class FoodMainActivity extends AppCompatActivity {
         return filePath;
     }
     private void onBtnThemMonAn(View view) {
-        Food food = new Food();
-        food.setId(1);
-        food.setFoodName(txtNameFood.getText().toString());
-        food.setTime(txtTime.getText().toString());
-        food.setActive(true);
-        food.setStep(txtCachLam.getText().toString());
-        food.setIngredient(txtNguyenLieu.getText().toString());
-        food.setRation(txtSoNguoi.getText().toString());
-        food.setImage(selectedImagePath);
-        food.setUserId(1);
+//        Food food = new Food();
+//        food.setId(1);
+//        food.setFoodName(txtNameFood.getText().toString());
+//        food.setTime(txtTime.getText().toString());
+//        food.setActive(true);
+//        food.setStep(txtCachLam.getText().toString());
+//        food.setIngredient(txtNguyenLieu.getText().toString());
+//        food.setRation(txtSoNguoi.getText().toString());
+//        food.setImage(selectedImagePath);
+//        food.setUserId(1);
 
 
 
@@ -130,8 +130,8 @@ public class FoodMainActivity extends AppCompatActivity {
 //        String thoigian = txtTime.getText().toString();
 //        String cachlam = txtCachLam.getText().toString();
 //        Food food = new Food(1,foodname,songuoi,thoigian,nguyenlieu,cachlam,null, 1,true);
-        MyDatabase.getInstance(this).getFoodDao().insert(food);
-        Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
+//        MyDatabase.getInstance(this).getFoodDao().insert(food);
+//        Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

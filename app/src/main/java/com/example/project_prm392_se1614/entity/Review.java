@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
                         childColumns = "food_id")})
 public class Review {
 
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "review")
     @PrimaryKey(autoGenerate = true)
     @NotNull
     private int id;

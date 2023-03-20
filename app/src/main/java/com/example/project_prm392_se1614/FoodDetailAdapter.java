@@ -44,18 +44,18 @@ public class FoodDetailAdapter extends RecyclerView.Adapter<FoodDetailAdapter.Fo
 //               iClicks.deleteFood(food);
 //           }
 //       });
-       String imagename = food.getImage();
-       Context context = holder.itemView.getContext();
-       if(food == null){
-           return;
-       }
-        Resources resources = context.getResources();
-        int imageResId =resources.getIdentifier(imagename, "drawable", context.getPackageName());
-        if (imageResId != 0) {
-            Drawable drawable = resources.getDrawable(imageResId);
-            holder.foodimage.setBackground(drawable);
-        }
-       holder.fname.setText(food.getFoodName());
+//       String imagename = food.getImage();
+//       Context context = holder.itemView.getContext();
+//       if(food == null){
+//           return;
+//       }
+//        Resources resources = context.getResources();
+//        int imageResId =resources.getIdentifier(imagename, "drawable", context.getPackageName());
+//        if (imageResId != 0) {
+//            Drawable drawable = resources.getDrawable(imageResId);
+//            holder.foodimage.setBackground(drawable);
+//        }
+//       holder.fname.setText(food.getFoodName());
 
     }
 

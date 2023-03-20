@@ -40,63 +40,15 @@
             app:layout_constraintTop_toBottomOf="@+id/textNameOrder" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="52dp"
-            android:text="Khẩu phần "
-            app:layout_constraintEnd_toStartOf="@+id/textPerson"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="40dp"
-            android:text="Thời gian nấu"
-            app:layout_constraintEnd_toStartOf="@+id/textTime"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <EditText
-            android:id="@+id/textPerson"
-            android:layout_width="185dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="64dp"
-            android:ems="10"
-            android:hint="2 người"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-        <EditText
-            android:id="@+id/textTime"
-            android:layout_width="185dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="64dp"
-            android:ems="10"
-            android:hint="1 tiếng 30 phút"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPerson" />
-
-        <TextView
             android:id="@+id/textView4"
             android:layout_width="100dp"
             android:layout_height="34dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="56dp"
             android:text="Nguyên Liệu"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.151"
+            app:layout_constraintHorizontal_bias="0.102"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <EditText
             android:id="@+id/textNguyenLieu"
@@ -169,8 +121,10 @@
             android:layout_height="110dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.36"
             app:layout_constraintStart_toEndOf="@+id/btnThem"
             app:layout_constraintTop_toBottomOf="@+id/textCachLam"
+            app:layout_constraintVertical_bias="0.491"
             app:srcCompat="@android:drawable/ic_menu_mapmode" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

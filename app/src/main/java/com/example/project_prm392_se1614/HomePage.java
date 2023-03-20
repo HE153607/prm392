@@ -112,12 +112,12 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void onSelectpig(View view) {
-        String keyword = pig.getText().toString().trim();
-        SelectList(keyword);
+        Intent i = new Intent(this,FoodActivity.class);
+        startActivity(i);
     }
     private void onSelectfish(View view) {
-        String keyword = fish.getText().toString().trim();
-        SelectList(keyword);
+        Intent i = new Intent(this,LoadFoodActivity.class);
+        startActivity(i);
     }
     private void onSelectveget(View view) {
         String keyword = veget.getText().toString().trim();

@@ -20,6 +20,12 @@
             android:text="TextView"
             android:textColor="@color/black"
             android:layout_marginLeft="10dp"/>
+        <ImageView
+            android:id="@+id/imageItem1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_marginLeft="10dp"/>
 
 <!--        <com.makeramen.roundedimageview.RoundedImageView-->
 <!--            android:id="@+id/imageItem1"-->

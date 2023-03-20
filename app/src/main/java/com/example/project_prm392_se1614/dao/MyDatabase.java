@@ -9,6 +9,8 @@ import androidx.room.TypeConverters;
 
 import com.example.project_prm392_se1614.converter.RoleConverter;
 import com.example.project_prm392_se1614.entity.Evaluate;
+import com.example.project_prm392_se1614.entity.FoodMaterial;
+import com.example.project_prm392_se1614.entity.Role;
 import com.example.project_prm392_se1614.repository.EvaluateDao;
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.repository.FoodDao;
@@ -25,6 +27,12 @@ public abstract class MyDatabase extends RoomDatabase {
 
     public abstract FoodDao getFoodDao();
 
+    public abstract MaterialDAO getmaterialDAO();
+    public abstract FoodMaterialDAO getfoodMaterialDAO();
+    public abstract ReviewDAO getreviewDAO();
+    public abstract RoleDAO getroleDAO();
+    public abstract StatusFoodDAO getstatusFoodDAO();
+    public abstract UserDAO getuserDAO();
     private static final String DB_NAME = "KFC.db";
     private static MyDatabase instance;
 

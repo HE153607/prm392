@@ -47,27 +47,27 @@ public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHold
 //               iClicks.deleteFood(food);
 //           }
 //       });
-       String imagename = food.getImage();
-       Context context = holder.itemView.getContext();
-
-       if(food == null){
-           return;
-       }
-
-        Resources resources = context.getResources();
-        int imageResId =resources.getIdentifier(imagename, "drawable", context.getPackageName());
-        if (imageResId != 0) {
-            Drawable drawable = resources.getDrawable(imageResId);
-            holder.foodimage.setBackground(drawable);
-            holder.foodimage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context,FoodDetailsActivity.class);
-                    foodId = food.getId();
-                    context.startActivity(intent);
-                }
-            });
-        }
+//       String imagename = food.getImage();
+//       Context context = holder.itemView.getContext();
+//
+//       if(food == null){
+//           return;
+//       }
+//
+//        Resources resources = context.getResources();
+//        int imageResId =resources.getIdentifier(imagename, "drawable", context.getPackageName());
+//        if (imageResId != 0) {
+//            Drawable drawable = resources.getDrawable(imageResId);
+//            holder.foodimage.setBackground(drawable);
+//            holder.foodimage.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(context,FoodDetailsActivity.class);
+//                    foodId = food.getId();
+//                    context.startActivity(intent);
+//                }
+//            });
+//        }
        holder.fname.setText(food.getFoodName());
 
     }
