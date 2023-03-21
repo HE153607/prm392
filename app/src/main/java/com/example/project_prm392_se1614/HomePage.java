@@ -23,7 +23,7 @@ import java.util.List;
 public class HomePage extends AppCompatActivity {
     public TextView discover;
     public RecyclerView discoverList;
-    private FoodAdapters foodAdapter;
+    private FoodAdapters foodAdapters;
     private List<Food> foods;
     private EditText addname;
     private EditText addrecipe;
@@ -32,6 +32,7 @@ public class HomePage extends AppCompatActivity {
     private EditText search;
     private Button add;
     private Button search_buttons;
+    private static final int MY_REQUEST_CODE_DETAIL = 20;
     private TextView btn_list_food, pig, fish, veget, beef, egg, chic, pota, toma, goat, xx, sheep, lang, urkit;
     private void bindingView(){
         urkit = findViewById(R.id.urkit);
@@ -105,13 +106,13 @@ public class HomePage extends AppCompatActivity {
 //    }
 
     private void onDiscoverClick(View view) {
-        foodAdapter = new FoodAdapters();
-        foods = new ArrayList<>();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        discoverList.setLayoutManager(linearLayoutManager);
-        discoverList.setAdapter(foodAdapter);
-        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
-        foodAdapter.setData(foods);
+//        foodAdapters = new FoodAdapters();
+//        foods = new ArrayList<>();
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        discoverList.setLayoutManager(linearLayoutManager);
+//        discoverList.setAdapter(foodAdapters);
+//        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+//        foodAdapters.setData(foods);
     }
 
     private void onSelectpig(View view) {
@@ -170,22 +171,30 @@ public class HomePage extends AppCompatActivity {
     private void SelectList(String keyword){
         foods = new ArrayList<>();
         foods = MyDatabase.getInstance(this).getFoodDao().searchfood(keyword);
-        foodAdapter.setData(foods);
+        foodAdapters.setData(foods);
     }
 
-
+    public  void clickDetailFood(Food food){
+        Intent intent = new Intent(this,FoodDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_detail_food",food);
+        intent.putExtras(bundle);
+        startActivityForResult(intent,MY_REQUEST_CODE_DETAIL);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         bindingView();
-        foodAdapter = new FoodAdapters();
-//        foodAdapter = new FoodAdapter(new FoodAdapter.IClick() {
-//            @Override
-//            public void deleteFood(Food food) {
-//                clickDeleteFood(food);
-//            }
-//        });
+
+        foodAdapters = new FoodAdapters(new FoodAdapters.IClick() {
+            @Override
+            public void deatailFood(Food food) {
+                clickDetailFood(food);
+            }
+
+
+        });
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
         String token = session.getString("user",null);
         if(token == null || !JWTUtil.isValid(token)){
@@ -197,9 +206,9 @@ public class HomePage extends AppCompatActivity {
         foods = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         discoverList.setLayoutManager(linearLayoutManager);
-        discoverList.setAdapter(foodAdapter);
+        discoverList.setAdapter(foodAdapters);
         foods = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(user.getId());
-        foodAdapter.setData(foods);
+        foodAdapters.setData(foods);
         bindingAction();
 
     }

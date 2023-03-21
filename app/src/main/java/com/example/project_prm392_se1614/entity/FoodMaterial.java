@@ -1,5 +1,7 @@
 package com.example.project_prm392_se1614.entity;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;

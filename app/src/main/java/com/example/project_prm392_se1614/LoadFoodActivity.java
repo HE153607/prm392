@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,6 +34,7 @@ public class LoadFoodActivity extends AppCompatActivity {
     private List<Food> foodList;
     private EditText edtSearch;
     private Button addfood,btnLogout;
+    private Context context = this;
     private void bindingView(){
         rv = findViewById(R.id.rvData);
         btnAdd = findViewById(R.id.btnAdd);
@@ -72,7 +74,7 @@ public class LoadFoodActivity extends AppCompatActivity {
         }
         User user = JWTUtil.extractToken(token);
         int id = user.getId();
-        foodList = MyDatabase.getInstance(this).getFoodDao().getFoods();
+        foodList = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(user.getId());
         foodAdapter.SetData(foodList);
     }
     private void onClickButtonThem(View view) {
@@ -95,7 +97,7 @@ public class LoadFoodActivity extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                            MyDatabase.getInstance(LoadFoodActivity.this).getFoodDao().deleteFood(food);
+                            MyDatabase.getInstance(LoadFoodActivity.this).getFoodDao().DeleteFood(context , food.getId());
                         Toast.makeText(LoadFoodActivity.this, "Delete food successfully", Toast.LENGTH_SHORT).show();
                         loadData();
                     }

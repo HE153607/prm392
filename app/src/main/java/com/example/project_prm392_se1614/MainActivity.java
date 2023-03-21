@@ -75,13 +75,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onDiscoverClick(View view) {
-        foodAdapters = new FoodAdapters();
-        foods = new ArrayList<>();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        discoverList.setLayoutManager(linearLayoutManager);
-        discoverList.setAdapter(foodAdapters);
-        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
-        foodAdapters.setData(foods);
+//        foodAdapters = new FoodAdapters();
+//        foods = new ArrayList<>();
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        discoverList.setLayoutManager(linearLayoutManager);
+//        discoverList.setAdapter(foodAdapters);
+//        foods = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+//        foodAdapters.setData(foods);
     }
 
     private void onSelectpig(View view) {
@@ -184,14 +184,14 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        foodAdapters = new FoodAdapters();
-        foods = new ArrayList<>();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        discoverList.setLayoutManager(linearLayoutManager);
-        discoverList.setAdapter(foodAdapters);
-//        foods = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(1);
-        foodAdapters.setData(foods);
-        bindingAction();
+//        foodAdapters = new FoodAdapters();
+//        foods = new ArrayList<>();
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        discoverList.setLayoutManager(linearLayoutManager);
+//        discoverList.setAdapter(foodAdapters);
+////        foods = MyDatabase.getInstance(this).getFoodDao().getListFoodsById(1);
+//        foodAdapters.setData(foods);
+//        bindingAction();
 
 
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);

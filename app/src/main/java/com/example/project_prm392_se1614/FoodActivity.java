@@ -126,10 +126,11 @@ public class FoodActivity extends AppCompatActivity {
     }
     private byte[] ImageView_To_Byte(ImageView img) {
         BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
+
         Bitmap bmp = drawable.getBitmap();
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] byteArray = stream.toByteArray();
         return byteArray;
     }

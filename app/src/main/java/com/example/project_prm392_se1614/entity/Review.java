@@ -46,7 +46,7 @@ public class Review {
         this.rate = rate;
         this.status = status;
     }
-
+public 
     public int getUserId() {
         return userId;
     }

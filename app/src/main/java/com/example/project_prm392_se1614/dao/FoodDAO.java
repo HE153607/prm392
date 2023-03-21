@@ -1,6 +1,7 @@
 package com.example.project_prm392_se1614.dao;
 
 import android.content.Context;
+import android.content.DialogInterface;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -41,6 +42,8 @@ public interface FoodDAO {
     @Delete
     void deleteFood(Food food);
 
+    @Query("Delete From Food WHERE id = :foodid")
+    void deleteFoodById(long foodid);
 
 
     @Query("SELECT * FROM Food ")
@@ -62,5 +65,21 @@ public interface FoodDAO {
             MyDatabase.getInstance(context).getfoodMaterialDAO().insert(foodMaterial);
         }
         return foodId;
+    }
+//    @Transaction
+//    default long UpdateFoodWithMaterials(Context context, Food food, List<Material> materials ) {
+//        long foodId = updateFood(food);
+//        for (Material material : materials) {
+//            long materialId = MyDatabase.getInstance(context).getmaterialDAO().insert(material);
+//            FoodMaterial foodMaterial = new FoodMaterial(foodId, materialId);
+//            MyDatabase.getInstance(context).getfoodMaterialDAO().updatMaterial(foodMaterial);
+//        }
+//        return foodId;
+//    }
+    @Transaction
+    default  void DeleteFood(Context context , long id){
+        MyDatabase.getInstance(context).getfoodMaterialDAO().deleteByFoodId((int)id);
+        deleteFoodById(id);
+
     }
 }

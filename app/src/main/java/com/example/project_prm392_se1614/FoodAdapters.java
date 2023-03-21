@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,17 +23,17 @@ import java.util.List;
 public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHolder>{
     public List<Food> foodList;
     public static int foodId;
-    //public IClick iClicks;
+    public IClick iClicks;
     public void setData(List<Food> list){
         this.foodList = list;
         notifyDataSetChanged();
     }
-//    public interface IClick{
-//        void deleteFood(Food food);
-//    }
-//    public FoodAdapter(IClick iClick){
-//        this.iClicks = iClick;
-//    }
+    public interface IClick{
+        void deatailFood(Food food);
+    }
+    public FoodAdapters(FoodAdapters.IClick iClicks) {
+        this.iClicks = iClicks;
+    }
     @NonNull
     @Override
     public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,7 +51,7 @@ public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHold
 //           }
 //       });
 //       String imagename = food.getImage();
-//       Context context = holder.itemView.getContext();
+       Context context = holder.itemView.getContext();
 //
 //       if(food == null){
 //           return;
@@ -61,17 +62,16 @@ public class FoodAdapters extends RecyclerView.Adapter<FoodAdapters.FoodViewHold
 //        if (imageResId != 0) {
 //            Drawable drawable = resources.getDrawable(imageResId);
 //            holder.foodimage.setBackground(drawable);
-//            holder.foodimage.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = new Intent(context,FoodDetailsActivity.class);
-//                    foodId = food.getId();
-//                    context.startActivity(intent);
-//                }
-//            });
-//        }
-        Bitmap bitmap = BitmapFactory.decodeByteArray(food.getImage(), 0, food.getImage().length);
-        holder.foodimage.setImageBitmap(bitmap);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(food.getImage(), 0, food.getImage().length);
+            holder.foodimage.setImageBitmap(bitmap);
+            holder.foodimage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                        iClicks.deatailFood(food);
+                }
+            });
+
+
        holder.fname.setText(food.getFoodName());
 
     }

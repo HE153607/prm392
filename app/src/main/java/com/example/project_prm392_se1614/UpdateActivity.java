@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,10 +23,15 @@ import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.dao.MyDatabase;
+import com.example.project_prm392_se1614.entity.Material;
+import com.example.project_prm392_se1614.entity.Role;
 import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UpdateActivity extends AppCompatActivity {
     private EditText txtNameFood;
@@ -54,6 +60,7 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void bindingAction(){
+
         btnImg.setOnClickListener(this::onBtnImgClick);
     }
 
@@ -122,12 +129,12 @@ public class UpdateActivity extends AppCompatActivity {
         bindingAction();
         lFood = (Food) getIntent().getExtras().get("object_food");
         if(lFood != null){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(lFood.getImage(), 0, lFood.getImage().length);
+            imgFood.setImageBitmap(bitmap);
+            txtNameFood.setText(lFood.getFoodName());
+            txtNguyenLieu.setText(lFood.getIngredient());
+            txtCachLam.setText(lFood.getStep());
 
-//            txtNameFood.setText(lFood.getFoodName());
-//            txtNguyenLieu.setText(lFood.getIngredient());
-//            txtCachLam.setText(lFood.getStep());
-//            txtTime.setText(lFood.getTime());
-//            txtSoNguoi.setText(lFood.getRation());
         }
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +143,16 @@ public class UpdateActivity extends AppCompatActivity {
                 updateFood();
             }
         });
+    }
+    private byte[] ImageView_To_Byte(ImageView img) {
+        BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
+
+        Bitmap bmp = drawable.getBitmap();
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
     }
     private void updateFood(){
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
@@ -151,7 +168,7 @@ public class UpdateActivity extends AppCompatActivity {
 //        String nguyenlieu = txtNguyenLieu.getText().toString();
 //        String thoigian = txtTime.getText().toString();
 //        String cachlam = txtCachLam.getText().toString();
-
+//
 //        lFood.setFoodName(txtNameFood.getText().toString());
 //        lFood.setTime(txtTime.getText().toString());
 //        lFood.setActive(true);
@@ -161,7 +178,31 @@ public class UpdateActivity extends AppCompatActivity {
 //        lFood.setImage(selectedImagePath);
 //        lFood.setUserId(user.getId());
 
-        MyDatabase.getInstance(this).getFoodDao().updateFood(lFood);
+        if(user.getRole() == Role.ADMIN){
+            lFood.setId(lFood.getId());
+            lFood.setFoodName(txtNameFood.getText().toString());
+            lFood.setIngredient(txtNguyenLieu.getText().toString());
+            lFood.setStatus(1);
+            lFood.setImage(ImageView_To_Byte(imgFood));
+            lFood.setUserId(user.getId());
+            lFood.setStep(txtCachLam.getText().toString());
+        }else if(user.getRole() == Role.USER){
+            lFood.setId(lFood.getId());
+            lFood.setFoodName(txtNameFood.getText().toString());
+            lFood.setStep(txtCachLam.getText().toString());
+            lFood.setIngredient("a");
+            lFood.setImage(ImageView_To_Byte(imgFood));
+            lFood.setUserId(user.getId());
+            lFood.setStatus(0);
+
+        }
+        Material Material  = new Material(lFood.getIngredient(), true);
+        Material Material1  = new Material("Cu", true);
+        List<Material> a = new ArrayList<>();
+        a.add(Material);
+        a.add(Material1);
+
+        MyDatabase.getInstance(this).getFoodDao().insertFoodWithMaterials(this,lFood,a);
         Toast.makeText(this, "update", Toast.LENGTH_SHORT).show();
 
         Intent intentResult = new Intent(this,LoadFoodActivity.class);

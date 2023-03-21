@@ -2,6 +2,8 @@ package com.example.project_prm392_se1614;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.dao.MyDatabase;
+import com.example.project_prm392_se1614.entity.Review;
 import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 import com.squareup.picasso.Picasso;
@@ -23,76 +26,74 @@ import java.util.List;
 
 public class FoodDetailsActivity extends AppCompatActivity {
 
-    MyDatabase database;
-    private Food foodList1;
+
+    private Food foodDetail;
     private List<Food> foodList;
     public RecyclerView discoverList;
     private FoodDetailAdapter foodDetailAdapter;
+    private  ImageView imgUserName;
+    private TextView txtUserName;
+    private  TextView txtTagName;
+    private TextView txtMaterial;
+    private TextView txtMaking;
+    private  ImageView imgByUserName;
+    private TextView txtByUser;
+    private  TextView txtComment;
+    private  TextView txtFoodDetail;
+    private  EditText textComment;
+    private ImageView imgSend;
+    private ImageView imageFood;
+    public void bindingView(){
+        imgUserName = findViewById(R.id.imgUserName);
+         txtUserName = findViewById(R.id.txtUserName);
+         txtTagName = findViewById(R.id.txtTagName);
+         txtMaterial = findViewById(R.id.txtMaterial);
+         txtMaking = findViewById(R.id.txtMaking);
+         imgByUserName = findViewById(R.id.imgByUser);
+         txtByUser = findViewById(R.id.txtByUser);
+         txtComment = findViewById(R.id.txtComment);
+         textComment = findViewById(R.id.textViewComment);
+         imgSend = findViewById(R.id.imgSend);
+        imageFood = findViewById(R.id.imgFoodDetail);
+        txtFoodDetail =findViewById(R.id.txtFoodDetail);
+    }
 
+    private void bindingAction(){
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_food_details);
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
         String token = session.getString("user",null);
-        setContentView(R.layout.activity_food_details);
+        bindingView();
         User user = JWTUtil.extractToken(token);
-        int userid = user.getId();
-        foodList1 = database.getInstance(this).getFoodDao().getFoodById(FoodAdapters.foodId);
-        User userID = database.getInstance(this).getUserDao().getUserById(userid);
 
-        Resources resources = getResources();
-//        int imageResId =resources.getIdentifier(foodList1.getImage(), "drawable", getPackageName());
+        foodDetail = (Food) getIntent().getExtras().get("object_detail_food");
+        User userID = MyDatabase.getInstance(this).getUserDao().getUserById(user.getId());
+        txtUserName.setText(userID.getName());
+        txtByUser.setText(userID.getName());
+        txtTagName.setText(userID.getEmail());
 
+        if(foodDetail != null){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(foodDetail.getImage(), 0, foodDetail.getImage().length);
+            imageFood.setImageBitmap(bitmap);
+            txtFoodDetail.setText(foodDetail.getFoodName());
+            txtMaterial.setText(foodDetail.getIngredient());
+            txtMaking.setText(foodDetail.getStep());
 
-// Food image and name
-//        ImageView imgFoodDetail = findViewById(R.id.imgFoodDetail);
-//        imgFoodDetail.setImageResource(imageResId);
-//
-//        TextView txtFoodDetail = findViewById(R.id.txtFoodDetail);
-//
-//            txtFoodDetail.setText(foodList1.getFoodName());
+        }
+        final Review review = new Review();
+        txtComment.getText().toString().trim();
 
-
-// info User
-        ImageView imgUserName = findViewById(R.id.imgUserName);
-        Picasso.get().load("https://i.imgur.com/DvpvklR.png").into(imgUserName);
-
-        TextView txtUserName = findViewById(R.id.txtUserName);
-        txtUserName.setText(userID.getName()); // get nameUser() from database
-
-        TextView txtTagName = findViewById(R.id.txtTagName);
-        txtTagName.setText("@"+userID.getEmail());
-
-// getInstance list
-        TextView txtMaterial = findViewById(R.id.txtMaterial);
-            txtMaterial.setText(foodList1.getIngredient());
-
-// step cooking
-        TextView txtMaking = findViewById(R.id.txtMaking);
-        // getStep from database
-
-            txtMaking.setText(foodList1.getStep());
-
-
-// info post created by user
-        ImageView imgByUserName = findViewById(R.id.imgByUser);
-        Picasso.get().load("https://i.imgur.com/DvpvklR.png").into(imgByUserName);
-
-
-        TextView txtByUser = findViewById(R.id.txtByUser);
-        txtByUser.setText(user.getName());
-
-// comment function
-        TextView txtComment = findViewById(R.id.txtComment);
-        EditText textComment = findViewById(R.id.textViewComment);
-        ImageView imgSend = findViewById(R.id.imgSend);
-        imgSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                txtComment.setText(textComment.getText());
-                textComment.setText("");
-            }
-        });
+//        imgSend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                txtComment.setText(textComment.getText());
+//                textComment.setText("");
+//            }
+//        });
 
         foodDetailAdapter = new FoodDetailAdapter();
         foodList = new ArrayList<>();
@@ -100,7 +101,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
         discoverList = findViewById(R.id.discoverList);
         discoverList.setLayoutManager(gridLayoutManager);
         discoverList.setAdapter(foodDetailAdapter);
-        foodList = MyDatabase.getInstance(this).getFoodDao().getAllFood();
+//        foodList = MyDatabase.getInstance(this).getFoodDao().getAllFood();
         foodDetailAdapter.setData(foodList);
     }
 }
