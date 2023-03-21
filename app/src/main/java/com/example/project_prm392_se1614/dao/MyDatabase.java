@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.project_prm392_se1614.converter.ByteConverter;
 import com.example.project_prm392_se1614.converter.RoleConverter;
 import com.example.project_prm392_se1614.entity.Evaluate;
 import com.example.project_prm392_se1614.entity.FoodMaterial;
@@ -19,7 +20,7 @@ import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.repository.UserDao;
 
 @Database(entities = {User.class, Food.class, Evaluate.class, Material.class, FoodMaterial.class, Review.class}, version = 1)
-@TypeConverters({RoleConverter.class})
+@TypeConverters({RoleConverter.class, ByteConverter.class})
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract UserDao getUserDao();

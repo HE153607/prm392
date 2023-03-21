@@ -123,11 +123,11 @@ public class UpdateActivity extends AppCompatActivity {
         lFood = (Food) getIntent().getExtras().get("object_food");
         if(lFood != null){
 
-            txtNameFood.setText(lFood.getFoodName());
-            txtNguyenLieu.setText(lFood.getIngredient());
-            txtCachLam.setText(lFood.getStep());
-            txtTime.setText(lFood.getTime());
-            txtSoNguoi.setText(lFood.getRation());
+//            txtNameFood.setText(lFood.getFoodName());
+//            txtNguyenLieu.setText(lFood.getIngredient());
+//            txtCachLam.setText(lFood.getStep());
+//            txtTime.setText(lFood.getTime());
+//            txtSoNguoi.setText(lFood.getRation());
         }
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -152,14 +152,14 @@ public class UpdateActivity extends AppCompatActivity {
 //        String thoigian = txtTime.getText().toString();
 //        String cachlam = txtCachLam.getText().toString();
 
-        lFood.setFoodName(txtNameFood.getText().toString());
-        lFood.setTime(txtTime.getText().toString());
-        lFood.setActive(true);
-        lFood.setStep(txtCachLam.getText().toString());
-        lFood.setIngredient(txtNguyenLieu.getText().toString());
-        lFood.setRation(txtSoNguoi.getText().toString());
-        lFood.setImage(selectedImagePath);
-        lFood.setUserId(user.getId());
+//        lFood.setFoodName(txtNameFood.getText().toString());
+//        lFood.setTime(txtTime.getText().toString());
+//        lFood.setActive(true);
+//        lFood.setStep(txtCachLam.getText().toString());
+//        lFood.setIngredient(txtNguyenLieu.getText().toString());
+//        lFood.setRation(txtSoNguoi.getText().toString());
+//        lFood.setImage(selectedImagePath);
+//        lFood.setUserId(user.getId());
 
         MyDatabase.getInstance(this).getFoodDao().updateFood(lFood);
         Toast.makeText(this, "update", Toast.LENGTH_SHORT).show();

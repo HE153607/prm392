@@ -41,16 +41,16 @@ public class FoodDetailsActivity extends AppCompatActivity {
         User userID = database.getInstance(this).getUserDao().getUserById(userid);
 
         Resources resources = getResources();
-        int imageResId =resources.getIdentifier(foodList1.getImage(), "drawable", getPackageName());
+//        int imageResId =resources.getIdentifier(foodList1.getImage(), "drawable", getPackageName());
 
 
 // Food image and name
-        ImageView imgFoodDetail = findViewById(R.id.imgFoodDetail);
-        imgFoodDetail.setImageResource(imageResId);
-
-        TextView txtFoodDetail = findViewById(R.id.txtFoodDetail);
-
-            txtFoodDetail.setText(foodList1.getFoodName());
+//        ImageView imgFoodDetail = findViewById(R.id.imgFoodDetail);
+//        imgFoodDetail.setImageResource(imageResId);
+//
+//        TextView txtFoodDetail = findViewById(R.id.txtFoodDetail);
+//
+//            txtFoodDetail.setText(foodList1.getFoodName());
 
 
 // info User

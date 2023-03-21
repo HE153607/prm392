@@ -34,7 +34,8 @@ public class Food implements Serializable {
 
     @ColumnInfo(name="image")
     private byte[] image;
-
+    @ColumnInfo(name="step")
+    private String Step;
     @ColumnInfo(name="user_id")
     private int userId;
 
@@ -44,13 +45,15 @@ public class Food implements Serializable {
     @Ignore
     private User user;
 
-    public Food(String foodName, String ingredient, byte[] image, int userId, int status, User user) {
+    public Food(String foodName, String ingredient, byte[] image, int userId, int status, User user,String Step) {
         this.foodName = foodName;
         this.ingredient = ingredient;
         this.image = image;
         this.userId = userId;
         this.status = status;
         this.user = user;
+        this.Step= Step;
+
     }
 
     public Food() {
@@ -78,6 +81,13 @@ public class Food implements Serializable {
 
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
+    }
+    public String getStep() {
+        return Step;
+    }
+
+    public void setStep(String step) {
+        this.Step = step;
     }
 
     public byte[] getImage() {

@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,9 +22,11 @@ import android.widget.Toast;
 
 import com.example.project_prm392_se1614.entity.Food;
 import com.example.project_prm392_se1614.dao.MyDatabase;
+import com.example.project_prm392_se1614.entity.Role;
 import com.example.project_prm392_se1614.entity.User;
 import com.example.project_prm392_se1614.jwtutil.JWTUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 public class FoodActivity extends AppCompatActivity {
@@ -114,6 +117,15 @@ public class FoodActivity extends AppCompatActivity {
         }
         return filePath;
     }
+    private byte[] ImageView_To_Byte(ImageView img) {
+        BitmapDrawable drawable = (BitmapDrawable) img.getDrawable();
+        Bitmap bmp = drawable.getBitmap();
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
+    }
     private void onBtnThemMonAn(View view) {
         SharedPreferences session = getSharedPreferences("login", MODE_PRIVATE);
         String token = session.getString("user",null);
@@ -124,14 +136,24 @@ public class FoodActivity extends AppCompatActivity {
         }
         User user = JWTUtil.extractToken(token);
         final Food food = new Food();
-//        food.setFoodName(txtNameFood.getText().toString());
-//        food.setTime(txtTime.getText().toString());
-//        food.setActive(true);
-//        food.setStep(txtCachLam.getText().toString());
-//        food.setIngredient(txtNguyenLieu.getText().toString());
-//        food.setRation(txtSoNguoi.getText().toString());
-//        food.setImage(selectedImagePath);
-//        food.setUserId(user.getId());
+        if(user.getRole() == Role.ADMIN){
+            food.setFoodName(txtNameFood.getText().toString());
+            food.setIngredient(txtNguyenLieu.getText().toString());
+            food.setStatus(1);
+            food.setImage(ImageView_To_Byte(imgFood));
+            food.setUserId(user.getId());
+            food.setStep(txtCachLam.getText().toString());
+        }else if(user.getRole() == Role.USER){
+            food.setFoodName(txtNameFood.getText().toString());
+            food.setStep(txtCachLam.getText().toString());
+            food.setIngredient("a");
+            food.setImage(ImageView_To_Byte(imgFood));
+            food.setUserId(user.getId());
+            food.setStatus(0);
+
+
+        }
+
 
 
 
@@ -142,7 +164,7 @@ public class FoodActivity extends AppCompatActivity {
 //        String thoigian = txtTime.getText().toString();
 //        String cachlam = txtCachLam.getText().toString();
 //        Food food = new Food(1,foodname,songuoi,thoigian,nguyenlieu,cachlam,null, 1,true);
-             MyDatabase.getInstance(this).getFoodDao().insert(food);
+             MyDatabase.getInstance(this).getFoodDao().;
              Toast.makeText(this, "Add Succesully", Toast.LENGTH_SHORT).show();
              Intent intent = new Intent(this,HomePage.class);
              startActivity(intent);

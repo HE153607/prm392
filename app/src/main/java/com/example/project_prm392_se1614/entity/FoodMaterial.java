@@ -34,7 +34,7 @@ public class FoodMaterial {
     @ColumnInfo(name = "status")
     private boolean status;
 
-    public FoodMaterial() {
+    public FoodMaterial(long foodId, long materialId) {
     }
 
     public FoodMaterial(int foodId, int materialId, boolean status) {
