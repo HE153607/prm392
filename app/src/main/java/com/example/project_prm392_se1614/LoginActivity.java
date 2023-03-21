@@ -29,6 +29,10 @@ public class LoginActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.signup);
         textView.setOnClickListener(this::viewRegisterClicked);
 
+        TextView txtSologan = findViewById(R.id.txtSologan);
+        txtSologan.setText("Nấu ăn khó?" +
+                "\n CookRecipe lo");
+
         Button button = findViewById(R.id.cirLoginButton);
         button.setOnClickListener(this::onLogin);
 
@@ -48,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText pass = findViewById(R.id.editTextPassword);
         EditText email = findViewById(R.id.editTextEmail);
+
         User user = dao.getUserByPassAndEmail(pass.getText().toString(), email.getText().toString());
 
         if(user != null){
