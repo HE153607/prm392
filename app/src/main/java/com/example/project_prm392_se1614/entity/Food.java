@@ -18,7 +18,8 @@ import kotlin.jvm.Transient;
                 parentColumns = "id",
                 childColumns = "user_id"))
 public class Food implements Serializable {
-
+    private static final long serialVersionUID = 1L;
+    
     @PrimaryKey(autoGenerate = true)
     @NotNull
     @ColumnInfo(name="id")

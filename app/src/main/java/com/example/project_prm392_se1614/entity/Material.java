@@ -7,9 +7,11 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
-@Entity(tableName = "material")
-public class Material {
+import java.io.Serializable;
 
+@Entity(tableName = "material")
+public class Material implements Serializable {
+    private static final long serialVersionUID = 1L;
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     @NotNull

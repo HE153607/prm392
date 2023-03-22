@@ -8,6 +8,8 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+
 @Entity(tableName = "review",
         foreignKeys = {@ForeignKey(
                 entity = User.class,
@@ -17,8 +19,8 @@ import org.jetbrains.annotations.NotNull;
                         entity = Food.class,
                         parentColumns = "id",
                         childColumns = "food_id")})
-public class Review {
-
+public class Review implements Serializable {
+    private static final long serialVersionUID = 1L;
     @ColumnInfo(name = "review")
     @PrimaryKey(autoGenerate = true)
     @NotNull
